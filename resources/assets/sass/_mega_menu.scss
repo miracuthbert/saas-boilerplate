@@ -1,0 +1,89 @@
+//MEGA MENU STYLES
+
+.menu-large {
+  position: static !important;
+}
+
+.megamenu {
+  padding: 20px 0px;
+  width: 100%;
+}
+
+.navbar {
+
+  .dropdown-menu {
+
+    &.megamenu {
+      background-color: $white;
+    }
+
+  }
+
+  .megamenu {
+
+    .sub {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      color: $black;
+
+      &.down {
+        border-bottom: 1px dotted $gray-600;
+      }
+
+      &.up {
+        border-top: 1px dotted $gray-600;
+      }
+    }
+
+    .nav-link {
+      color: $gray-900;
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .nav-link:hover, .nav-link:focus {
+      color: $black;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .nav > li {
+    display: block;
+    width: 100%;
+    float: none;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item + .nav-item {
+    margin-left: 0;
+  }
+
+  .dropdown-menu {
+
+    &.megamenu {
+      margin-left: 0;
+      margin-right: 0;
+
+      li {
+        margin-bottom: 30px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .show {
+
+    &.menu-large {
+
+      .dropdown-menu {
+        border: 0;
+      }
+
+    }
+
+  }
+
+}

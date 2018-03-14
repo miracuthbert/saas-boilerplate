@@ -1,0 +1,21 @@
+
+//fontawesome
+@import "~font-awesome/scss/font-awesome";
+
+//simple-line-icons
+@import "~simple-line-icons/scss/simple-line-icons";
+
+//bootswatch theme variable
+@import "~bootswatch/dist/cosmo/_variables";
+
+//bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+//bootswatch theme override
+@import "~bootswatch/dist/cosmo/bootswatch";
+
+//toastr
+@import "~toastr/toastr";
+
+//custom styles
+@import "mega_menu";

@@ -1,0 +1,61 @@
+    <li class="nav-title">Posts Management</li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="icon-rocket"></i> Posts
+        </a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.posts.create'), ' active') }}"
+                   href="{{ route('admin.posts.create') }}">
+                    <i class="icon-plus"></i> Add Post
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.posts.index'), ' active') }}"
+                   href="{{ route('admin.posts.index') }}">
+                    <i class="icon-rocket"></i> Posts
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-title">Categories & Tags</li>
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="icon-layers"></i> Categories
+        </a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.categories.create'), ' active') }}"
+                   href="{{ route('admin.categories.create') }}">
+                    <i class="icon-plus"></i> Add Category
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.categories.index'), ' active') }}"
+                   href="{{ route('admin.categories.index') }}">
+                    <i class="icon-layers"></i> Categories
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="icon-tag"></i> Tags
+        </a>
+        <ul class="nav-dropdown-items">
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.tags.create'), ' active') }}"
+                   href="{{ route('admin.tags.create') }}">
+                    <i class="icon-plus"></i> Add Tag
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{{ return_if(on_page('admin.tags.index'), ' active') }}"
+                   href="{{ route('admin.tags.index') }}">
+                    <i class="icon-layers"></i> Tags
+                </a>
+            </li>
+        </ul>
+    </li>
