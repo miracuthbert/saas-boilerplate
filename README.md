@@ -45,7 +45,7 @@ Some common features will not be listed as well.*
 4. Run `php artisan app:name` to set the name (namespace) of your app. 
     (*Remember not to live any spaces*)
 5. Run `php artisan migrate` for initial tables setup.
-6. `Optional` Run `php artisan db:seed --class=RoleTableSeeder` to set the intial 
+6. `Optional` Run `php artisan db:seed --class=RoleTableSeeder` to set the initial 
     roles and permissions if you opt to use the initial user and roles management.
 
 ## libraries & packages
