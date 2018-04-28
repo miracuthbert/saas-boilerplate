@@ -8,6 +8,7 @@ use SAASBoilerplate\App\ViewComposers\CountriesComposer;
 use SAASBoilerplate\App\ViewComposers\PermissionsComposer;
 use SAASBoilerplate\App\ViewComposers\PlansComposer;
 use SAASBoilerplate\App\ViewComposers\RolesComposer;
+use SAASBoilerplate\App\ViewComposers\UserCompaniesComposer;
 use SAASBoilerplate\App\ViewComposers\UserFiltersComposer;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -34,12 +35,9 @@ class ComposerServiceProvider extends ServiceProvider
 //            'layouts.blog.partials._navigation',
 //            'blog.partials._categories_filters_list'
 //        ], CategoriesComposer::class);
-//
-//        //blog filters mappings
-//        View::composer([
-//            'blog.layouts.partials._navigation',
-//            'admin.posts.partials._filters'
-//        ], PostFiltersComposer::class);
+
+        //user companies
+        View::composer('*', UserCompaniesComposer::class);
 
         //user filters mappings
         View::composer([
@@ -65,6 +63,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(UserCompaniesComposer::class);
     }
 }

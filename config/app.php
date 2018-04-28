@@ -166,6 +166,7 @@ return [
         SAASBoilerplate\App\Providers\StripeServiceProvider::class,
         SAASBoilerplate\App\Providers\BladeServiceProvider::class,
         SAASBoilerplate\App\Providers\TwoFactorServiceProvider::class,
+        SAASBoilerplate\App\Providers\TenantServiceProvider::class,
 
     ],
 

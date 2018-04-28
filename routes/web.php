@@ -133,6 +133,17 @@ Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => '
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     /**
+     * Companies Resource Routes
+     */
+    Route::resource('/companies', 'Company\CompanyController', [
+        'only' => [
+            'index',
+            'create',
+            'store'
+        ]
+    ]);
+
+    /**
      * Account
      */
     // account index

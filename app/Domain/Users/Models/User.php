@@ -11,6 +11,7 @@ use SAASBoilerplate\App\Traits\Eloquent\Auth\HasTwoFactorAuthentication;
 use SAASBoilerplate\App\Traits\Eloquent\Roles\HasPermissions;
 use SAASBoilerplate\App\Traits\Eloquent\Roles\HasRoles;
 use SAASBoilerplate\App\Traits\Eloquent\Subscriptions\HasSubscriptions;
+use SAASBoilerplate\Domain\Company\Models\Company;
 use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
 use SAASBoilerplate\Domain\Teams\Models\Team;
 use SAASBoilerplate\Domain\Users\Filters\UserFilters;
@@ -193,5 +194,15 @@ class User extends Authenticatable
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'team_users');
+    }
+
+    /**
+     * Get companies that user belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_users');
     }
 }

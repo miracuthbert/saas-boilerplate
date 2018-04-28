@@ -11,6 +11,42 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                @auth
+                    <li class="nav-item dropdown"><!-- My Companies -->
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            My Companies <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @foreach($user_companies as $company)
+                                <a class="dropdown-item" href="{{ route('tenant.dashboard', $company) }}">
+                                    {{ $company->name }}
+                                </a>
+                            @endforeach
+
+                            <div class="dropdown-divider"></div>
+                            <!-- Create New Company Link -->
+                            <a class="dropdown-item" href="{{ route('account.companies.create') }}">
+                                New company
+                            </a>
+
+                            <!-- View All Link -->
+                            <a class="dropdown-item" href="{{ route('account.companies.index') }}">
+                                View all
+                            </a>
+                        </div>
+                    </li>
+
+                    <!-- Projects -->
+                    <li class="nav-item">
+                        <a class="nav-link{{ return_if(on_page('tenant.projects.index'), ' active') }}"
+                           href="{{ route('tenant.projects.index') }}">
+                            Projects
+                        </a>
+                    </li>
+                @endauth
+
                 @notsubscribed
                 <li class="nav-item">
                     <a class="nav-link{{ return_if(on_page('plans.index'), ' active') }}"
@@ -37,6 +73,7 @@
                         </a>
                     </li>
                 @else
+                <!-- My Dashboard -->
                     <li class="nav-item">
                         <a class="nav-link{{ return_if(on_page('account.dashboard'), ' active') }}"
                            href="{{ route('account.dashboard') }}">

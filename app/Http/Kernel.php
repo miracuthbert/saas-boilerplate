@@ -34,8 +34,12 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \SAASBoilerplate\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \SAASBoilerplate\Http\Middleware\Admin\Impersonate::class,
+        ],
+
+        'tenant' => [
+            \SAASBoilerplate\Http\Middleware\Tenant\TenantMiddleware::class,
+            \SAASBoilerplate\Http\Middleware\Tenant\TenantConfigMiddleware::class,
         ],
 
         'api' => [
