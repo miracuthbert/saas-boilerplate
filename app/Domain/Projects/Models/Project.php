@@ -3,7 +3,6 @@
 namespace SAASBoilerplate\Domain\Projects\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use SAASBoilerplate\App\Tenant\Traits\ForTenants;
 
@@ -39,16 +38,5 @@ class Project extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    /**
-     * Scope a query to exclude 'tenant' scope.
-     *
-     * @param Builder $builder
-     * @return Builder
-     */
-    public function scopeWithoutForTenants(Builder $builder)
-    {
-        return $builder->withoutGlobalScope(ForTenants::class);
     }
 }

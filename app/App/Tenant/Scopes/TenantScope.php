@@ -30,6 +30,6 @@ class TenantScope implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->where('company_id', '=', $this->tenant->id);
+        return $builder->where($this->tenant->getForeignKey(), '=', $this->tenant->id);
     }
 }

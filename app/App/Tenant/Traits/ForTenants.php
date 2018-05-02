@@ -8,6 +8,7 @@
 
 namespace SAASBoilerplate\App\Tenant\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use SAASBoilerplate\App\Tenant\Manager;
 use SAASBoilerplate\App\Tenant\Observers\TenantObserver;
 use SAASBoilerplate\App\Tenant\Scopes\TenantScope;
@@ -20,12 +21,25 @@ trait ForTenants
 
         $manager = app(Manager::class);
 
-        static::addGlobalScope(
-            new TenantScope($manager->getTenant())
-        );
+        if (null !== ($manager->getTenant())) {
+            static::addGlobalScope(
+                new TenantScope($manager->getTenant())
+            );
 
-        static::observe(
-            app(TenantObserver::class)
-        );
+            static::observe(
+                app(TenantObserver::class)
+            );
+        }
+    }
+
+    /**
+     * Scope a query to exclude 'tenant' scope.
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeWithoutForTenants(Builder $builder)
+    {
+        return $builder->withoutGlobalScope(TenantScope::class);
     }
 }
