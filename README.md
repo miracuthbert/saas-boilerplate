@@ -22,6 +22,7 @@ and role management.
         - Swap Plan
         - Update Card
     - API Tokens
+- Single Database Multi-tenancy
 - Admin
     - User Management
         - Manage User Roles
@@ -37,7 +38,7 @@ and role management.
 since they are under development or do not qualify as a standard / main SaaS feature. 
 Some common features will not be listed as well.*
 
-## usage
+## installation
 1. Fork, clone or download this repository.
 2. Run `composer install` if its the initial setup or `composer update`.
 3. Setup your environment keys in .env 
@@ -47,6 +48,48 @@ Some common features will not be listed as well.*
 5. Run `php artisan migrate` for initial tables setup.
 6. `Optional` Run `php artisan db:seed --class=RoleTableSeeder` to set the initial 
     roles and permissions if you opt to use the initial user and roles management.
+
+## usage
+### Single Database Multi-tenancy
+#### Model setup
+To start using single databse multi-tenancy call `ForTenants` trait on a model
+```php
+use SAASBoilerplate\App\Tenant\Traits\ForTenants;
+
+class Project extends Model
+{
+    use ForTenants;
+}
+```
+
+#### Tenants CRUD Operations
+Once you have setup the model as show above. `Just call CRUD operations directly`. 
+`Tenant` relationships are handled automatically.
+
+```php
+$projects = Project::create([
+    'name' => 'Project 1'
+]);
+$projects = Project::get();
+```
+
+#### Normal CRUD Operations
+To perform CRUD operations on models with `ForTenants` trait can be done by 
+adding `withoutForTenants` scope when fetching records associated with that model.
+
+```php
+$projects = Project::withoutForTenants()->get();
+```
+
+***This comes in handy for example in: admin or moderation operations***
+
+#### Routing
+All `tenant` routes are under the routes folder in the `tenant.php` file.
+
+Note: ***Tenant routes follow the same structure as other routes***
+
+`The main reason we place all tenant routes separately is to handle route binding and
+its much easier to know which routes are for tenants.`
 
 ## libraries & packages
 - Main
