@@ -22,7 +22,7 @@ class UserCompaniesComposer
     public function compose(View $view)
     {
         if (!$this->companies) {
-            $this->companies = auth()->user()->companies;
+            $this->companies = auth()->check() ? auth()->user()->companies : collect([]);
         }
 
         $view->with('user_companies', $this->companies);
