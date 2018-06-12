@@ -50,6 +50,22 @@ Some common features will not be listed as well.*
     roles and permissions if you opt to use the initial user and roles management.
 
 ## usage
+### Force HTTPS
+When pushing the project to a platform or production environment, 
+assets or urls may be broken if the platform enforces HTTPS.
+ 
+To enable urls to use HTTPS:
+
+Set `FORCE_HTTPS` variable in `.env` file to `true`. 
+
+By default `FORCE_HTTPS` is `false`.
+
+```Note: ``` If `FORCE_HTTPS` does not exist in your `.env`, 
+just add it as a new variable and assign a boolean value `true` or `false`.
+
+This dynamically tells Laravel to force urls to use HTTPS which is especially 
+handy in fixing or preventing  broken assets urls.
+
 ### Single Database Multi-tenancy
 #### Model setup
 To start using single databse multi-tenancy call `ForTenants` trait on a model
