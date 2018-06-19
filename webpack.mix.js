@@ -17,3 +17,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
 //admin theme based on bootstrap 4 + CoreUI
 mix.js('resources/assets/js/admin.js', 'public/js')
     .sass('resources/assets/sass/admin/admin.scss', 'public/css');
+
+var LiveReloadPlugin = require('webpack-livereload-plugin');
+
+mix.webpackConfig({
+    plugins: [
+        new LiveReloadPlugin()
+    ]
+});
