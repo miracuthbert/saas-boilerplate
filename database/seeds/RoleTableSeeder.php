@@ -47,6 +47,9 @@ class RoleTableSeeder extends Seeder
             [
                 'name' => 'delete users'
             ],
+            [
+                'name' => 'browse admin'
+            ],
         ];
 
         foreach ($permissions as $permission) {
