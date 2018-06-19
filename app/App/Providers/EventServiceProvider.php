@@ -8,6 +8,7 @@ use SAASBoilerplate\Domain\Auth\Events\UserRequestedActivationEmail;
 use SAASBoilerplate\Domain\Auth\Events\UserSignedUp;
 use SAASBoilerplate\Domain\Auth\Listeners\CreateDefaultTeam;
 use SAASBoilerplate\Domain\Auth\Listeners\SendActivationEmail;
+use SAASBoilerplate\Domain\Company\Listeners\CompanyUserEventSubscriber;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,15 @@ class EventServiceProvider extends ServiceProvider
         UserRequestedActivationEmail::class => [
             SendActivationEmail::class,
         ],
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        CompanyUserEventSubscriber::class
     ];
 
     /**
