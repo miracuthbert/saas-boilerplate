@@ -16,12 +16,16 @@ class PermissionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable(Permission::query()->getModel()->getTable())) {
-            Permission::where('usable', true)->get()->map(function ($permission) {
-                Gate::define($permission->name, function ($user) use ($permission) {
-                    return $user->hasPermissionTo($permission);
+        try {
+            if (Schema::hasTable(Permission::query()->getModel()->getTable())) {
+                Permission::where('usable', true)->get()->map(function ($permission) {
+                    Gate::define($permission->name, function ($user) use ($permission) {
+                        return $user->hasPermissionTo($permission);
+                    });
                 });
-            });
+            }
+        } catch (\Exception $exception) {
+            // log this or do something
         }
     }
 
