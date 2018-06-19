@@ -197,6 +197,20 @@ class User extends Authenticatable
     }
 
     /**
+     * Get user's last accessed company.
+     *
+     * If using the new tenant switch functionality:
+     * Append 'lastAccessedCompany' to model 'appends' property
+     * And uncomment lines below
+     *
+     * @return mixed
+     */
+    // public function getLastAccessedCompanyAttribute()
+    // {
+    //    return $this->companies()->orderByDesc('last_login_at')->first();
+    // }
+
+    /**
      * Get companies that user belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -17,6 +17,17 @@ class TenantMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // alternative way to resolve tenant based on last login access
+        // uncomment lines below and remove the used ones
+        // remember: change the routes in your views to reflect the new ones
+        // new switch route name: tenant.switch params: {company}
+        // new dashboard route name: tenant.dashboard params: none
+
+        // $tenant = $this->resolveTenant(
+        //    $request->company ?:
+        //        auth()->check() ? auth()->user()->lastAccessedCompany->id : session()->get('tenant')
+        // );
+
         $tenant = $this->resolveTenant(
             $request->company ?: session()->get('tenant')
         );

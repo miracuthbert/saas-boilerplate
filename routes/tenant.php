@@ -30,4 +30,23 @@ Route::group(['as' => 'tenant.'], function () {
      * All other tenant routes should go above this one
      */
     Route::get('/{company}', 'DashboardController@index')->name('dashboard');
+
+    /**
+     * Alternative tenant switch route
+     *
+     * Switch Tenant Route
+     */
+    // Route::get('/{company}', 'TenantSwitchController@switch')->name('switch');
+
+    /**
+     * --------------------------------------------------------------------------
+     * Dashboard
+     *
+     * Alternative tenant dashboard route
+     * --------------------------------------------------------------------------
+     *
+     * All other tenant routes should go above this one
+     */
+    // Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
 });
