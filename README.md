@@ -46,10 +46,21 @@ Some common features will not be listed as well.*
 4. Run `php artisan app:name` to set the name (namespace) of your app. 
     (*Remember not to live any spaces*)
 5. Run `php artisan migrate` for initial tables setup.
-6. `Optional` Run `php artisan db:seed --class=RoleTableSeeder` to set the initial 
-    roles and permissions if you opt to use the initial user and roles management.
+6. __Optional:__ Run `php artisan db:seed --class=RoleTableSeeder` to set the initial 
+    roles and permissions, then follow `step 7` below to assign a user the initial permissions and roles.
+7. __Optional:__ To create a `super / root` admin; 
+    Run `php artisan admin:assign-role youremail@example.org admin-root`. 
+    Substitute `youremail@example.org` with an existing user email. `admin-root` is the __default root Admin role__. 
+    
+    __Note:__ You must follow `step 6` above first to setup the root admin.
+
 
 ## usage
+### Custom Commands
+1. __Admin: _Assign user a role___
+    - Use `php artisan admin:assign-role <email> <role-slug>`: 
+    `<email>` is the user's email and `<role-slug>` is the _slug of the role_ you wish to assign the user.
+
 ### Force HTTPS
 When pushing the project to a platform or production environment, 
 assets or urls may be broken if the platform enforces HTTPS.
