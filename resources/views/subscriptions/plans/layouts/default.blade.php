@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex d-flex-wrap justify-content-center mb-3">
-            <h1>{{ $plansTitle or '' }}</h1>
+            <h1>{{ $plansTitle ?? '' }}</h1>
         </div><!-- /.d-flex -->
 
         @foreach($plans->chunk(3) as $plansRow)
@@ -46,7 +46,7 @@
         @endforeach
 
         <div class="d-flex d-flex-wrap justify-content-center">
-            {{ $links or '' }}
+            {{ $links ?? '' }}
         </div><!-- /.d-flex -->
     </div>
 @endsection

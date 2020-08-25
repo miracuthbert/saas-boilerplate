@@ -16,6 +16,9 @@
 | contains the "tenant" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Route;
+
 Route::group(['as' => 'tenant.'], function () {
     /**
      * Projects Main (Resource) Routes

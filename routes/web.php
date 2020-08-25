@@ -14,6 +14,9 @@
 /**
  * Auth Routes
  */
+
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace' => 'Auth\Controllers'], function () {
 
     // Authentication Routes...
@@ -76,7 +79,7 @@ Route::group(['namespace' => 'Subscription\Controllers'], function () {
     /**
      * Plans Group Routes
      */
-    Route::group(['prefix' => '/plans', 'middleware' => ['subscription.inactive'], 'as' => 'plans.'], function () {
+    Route::group(['prefix' => '/plans', 'as' => 'plans.'], function () {
 
         // teams index
         Route::get('/teams', 'PlanTeamController@index')->name('teams.index');
@@ -90,7 +93,7 @@ Route::group(['namespace' => 'Subscription\Controllers'], function () {
             'index',
             'show'
         ]
-    ])->middleware(['subscription.inactive']);
+    ]);
 
     /**
      * Subscription Resource Routes

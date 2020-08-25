@@ -31,7 +31,7 @@
                     }
                 };
 
-                $traverse($nodes, $shop);
+                $traverse($nodes, $shop)
             @endphp
         </select>
     </div>
