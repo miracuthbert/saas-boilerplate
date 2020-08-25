@@ -87,7 +87,7 @@
                     this.errors.name.unshift('No matching tag found. You can add this as a new tag.')
                 }
 
-                return
+
             },
             store() {
                 axios.post(this.endpoint, this.form).then((response) => {

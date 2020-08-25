@@ -11,12 +11,12 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css');
 
 //admin theme based on bootstrap 4 + CoreUI
-mix.js('resources/assets/js/admin.js', 'public/js')
-    .sass('resources/assets/sass/admin/admin.scss', 'public/css');
+mix.js('resources/js/admin.js', 'public/js')
+    .sass('resources/sass/admin/admin.scss', 'public/css');
 
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 

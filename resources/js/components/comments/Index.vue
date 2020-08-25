@@ -134,7 +134,7 @@
 
                 if (comment && (comment.id == reply.parent_id)) {
                     this.appendReply(comment, reply)
-                    return
+
                 } else if (comment.children) {
                     this.addReply(reply, comment.children)
                 }
