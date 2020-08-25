@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web', 'bindings')
+        Route::middleware(['web', 'bindings'])
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
     }
@@ -83,7 +83,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapTenantRoutes()
     {
-        Route::middleware('web', 'tenant', 'bindings')
+        Route::middleware(['web', 'tenant', 'bindings'])
             ->namespace("{$this->namespace}\Tenant\Controllers")
             ->group(base_path('routes/tenant.php'));
     }

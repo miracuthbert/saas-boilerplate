@@ -3,17 +3,19 @@
 namespace SAASBoilerplate\Http\Admin\Controllers\User;
 
 use SAASBoilerplate\Domain\Users\Models\Permission;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class PermissionStatusController extends Controller
 {
     /**
      * Update the specified resource status in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Permission  $permission
+     * @return RedirectResponse
      */
     public function toggleStatus(Request $request, Permission $permission)
     {
@@ -23,6 +25,6 @@ class PermissionStatusController extends Controller
 
         $permission->save();
 
-        return back()->withSuccess("{$permission->name} status updated successfully.");
+        return back()->with('success', "{$permission->name} status updated successfully.");
     }
 }

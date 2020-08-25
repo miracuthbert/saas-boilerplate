@@ -2,16 +2,19 @@
 
 namespace SAASBoilerplate\Http\Subscription\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class PlanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -23,8 +26,8 @@ class PlanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Subscriptions\Models\Plan  $plan
-     * @return \Illuminate\Http\Response
+     * @param  Plan  $plan
+     * @return Application|Factory|Response|View
      */
     public function show(Plan $plan)
     {

@@ -55,7 +55,7 @@ class LoginController extends Controller
 
             //redirect with error
             return back()->withInput(['email'])
-                ->withError('Your account is not active. Please activate it first.');
+                ->withErrors(['Your account is not active. Please activate it first.']);
         }
 
         if ($user->twoFactorEnabled()) {

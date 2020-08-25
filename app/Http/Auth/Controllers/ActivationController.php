@@ -4,7 +4,10 @@ namespace SAASBoilerplate\Http\Auth\Controllers;
 
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Users\Models\ConfirmationToken;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ActivationController extends Controller
@@ -22,8 +25,8 @@ class ActivationController extends Controller
     /**
      * @param Request $request
      * @param ConfirmationToken $token
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function activate(Request $request, ConfirmationToken $token)
     {
@@ -40,7 +43,7 @@ class ActivationController extends Controller
 
         //redirect user to intended route
         return redirect()->intended($this->redirectPath())
-            ->withSuccess('You are now signed in.');
+            ->with('success', 'You are now signed in.');
     }
 
     /**

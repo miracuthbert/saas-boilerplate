@@ -3,6 +3,7 @@
 namespace SAASBoilerplate\Domain\Users\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TwoFactor extends Model
 {
@@ -43,7 +44,7 @@ class TwoFactor extends Model
     /**
      * Get the two factor user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {

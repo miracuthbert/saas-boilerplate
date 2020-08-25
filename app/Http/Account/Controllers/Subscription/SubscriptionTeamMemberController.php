@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use SAASBoilerplate\App\Controllers\Controller;
@@ -16,12 +17,12 @@ class SubscriptionTeamMemberController extends Controller
      * Store a newly created resource in storage.
      *
      * @param SubscriptionTeamMemberStoreRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(SubscriptionTeamMemberStoreRequest $request)
     {
         if ($request->user()->teamLimitReached()) {
-            return back()->withError('You have reached the team limit for your plan.');
+            return back()->withErrors(['You have reached the team limit for your plan.']);
         }
 
         // team
@@ -37,7 +38,7 @@ class SubscriptionTeamMemberController extends Controller
         // send email to member
         Mail::to($member)->send(new TeamMemberAdded($member, $team));
 
-        return back()->withSuccess('Team member added.');
+        return back()->with('success', 'Team member added.');
     }
 
     /**
@@ -45,7 +46,7 @@ class SubscriptionTeamMemberController extends Controller
      *
      * @param Request $request
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Request $request, User $user)
     {
@@ -58,6 +59,6 @@ class SubscriptionTeamMemberController extends Controller
         // send mail to removed user
         Mail::to($user)->send(new TeamMemberDeleted($user, $team));
 
-        return back()->withSuccess('Member has been removed.');
+        return back()->with('success', 'Member has been removed.');
     }
 }

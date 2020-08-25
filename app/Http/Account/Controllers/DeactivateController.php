@@ -2,16 +2,20 @@
 
 namespace SAASBoilerplate\Http\Account\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Requests\DeactivateAccountRequest;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class DeactivateController extends Controller
 {
     /**
      * Display a view to show deactivate the account.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -22,7 +26,7 @@ class DeactivateController extends Controller
      * Handle account deactivation.
      *
      * @param DeactivateAccountRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(DeactivateAccountRequest $request)
     {
@@ -35,6 +39,6 @@ class DeactivateController extends Controller
         $user->delete();
 
         return redirect()->route('home')
-            ->withSuccess('Your account has been deactivated.');
+            ->with('success', 'Your account has been deactivated.');
     }
 }

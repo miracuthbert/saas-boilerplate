@@ -3,6 +3,7 @@
 namespace SAASBoilerplate\App\Console\Commands\Role;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 use SAASBoilerplate\Domain\Users\Models\Role;
 use SAASBoilerplate\Domain\Users\Models\User;
@@ -61,7 +62,7 @@ class AssignUserRoleCommand extends Command
         $slug = $this->argument('role');
 
         // no. of days
-        $days = $this->option('days', null);
+        $days = $this->option('days');
 
         // user role expiry date
         $expires_at = $days != null ? Carbon::now()->addDays($days) : null;
@@ -81,7 +82,7 @@ class AssignUserRoleCommand extends Command
                 // print success
                 $this->info(sprintf('Assigned role: `%s` to `%s`', $role->name, $user->name));
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->error(
                 sprintf(
                     'Whoops! we could not assign user a role because: %s',

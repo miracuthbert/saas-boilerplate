@@ -3,14 +3,15 @@
 namespace SAASBoilerplate\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class ChecksExpiredConfirmationTokens
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  Request $request
+     * @param  Closure  $next
      * @param $redirect
      * @return mixed
      */
@@ -19,7 +20,7 @@ class ChecksExpiredConfirmationTokens
         //check if token has expired and rdirect to passed url
         if ($request->confirmation_token->hasExpired()) {
             return redirect($redirect)
-                ->withError('Token expired.');
+                ->withErrors(['Token expired.']);
         }
 
         return $next($request);

@@ -2,7 +2,7 @@
 
 namespace SAASBoilerplate\Http\Tenant;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Company\Events\CompanyUserLogin;
 use SAASBoilerplate\Domain\Company\Models\Company;
@@ -13,7 +13,7 @@ class TenantSwitchController extends Controller
      * Switch tenant.
      *
      * @param Company $company
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function switch(Company $company)
     {

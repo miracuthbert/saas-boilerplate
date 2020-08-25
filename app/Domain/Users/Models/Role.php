@@ -7,6 +7,7 @@ use SAASBoilerplate\App\Traits\Eloquent\Ordering\PivotOrderableTrait;
 use SAASBoilerplate\Domain\Users\Filters\Roles\RoleFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Role extends Model
@@ -65,7 +66,7 @@ class Role extends Model
     /**
      * The permissions that belong to the role.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function permissions()
     {

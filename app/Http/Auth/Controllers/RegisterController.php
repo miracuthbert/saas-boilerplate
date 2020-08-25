@@ -63,7 +63,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return \SAASBoilerplate\Domain\Users\Models\User
+     * @return User
      */
     protected function create(array $data)
     {
@@ -94,6 +94,6 @@ class RegisterController extends Controller
 
         //redirect user
         return redirect($this->redirectPath())
-            ->withSuccess('Please check your email for an activation link');
+            ->with('success', 'Please check your email for an activation link');
     }
 }

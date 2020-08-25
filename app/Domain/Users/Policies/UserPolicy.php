@@ -21,7 +21,7 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  User  $user
      * @return mixed
      */
     public function view(User $user)
@@ -34,7 +34,7 @@ class UserPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -47,7 +47,7 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  User  $user
      * @return mixed
      */
     public function update(User $user)
@@ -60,7 +60,7 @@ class UserPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  User  $user
      * @return mixed
      */
     public function delete(User $user)
@@ -73,7 +73,7 @@ class UserPolicy
     /**
      * Determine whether the user can perform any action on the model.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  User  $user
      * @return mixed
      */
     public function touch(User $user)

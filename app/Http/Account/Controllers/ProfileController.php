@@ -4,14 +4,19 @@ namespace SAASBoilerplate\Http\Account\Controllers;
 
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Requests\ProfileStoreRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     /**
      * Show the user profile view.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -22,7 +27,7 @@ class ProfileController extends Controller
      * Store user's profile details in storage.
      *
      * @param ProfileStoreRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(ProfileStoreRequest $request)
     {
@@ -30,6 +35,6 @@ class ProfileController extends Controller
         $request->user()->update($request->only(['first_name', 'last_name', 'username', 'email', 'phone']));
 
         //redirect with success
-        return back()->withSuccess('Profile updated successfully.');
+        return back()->with('success', 'Profile updated successfully.');
     }
 }

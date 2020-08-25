@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\App\Providers;
 
+use SAASBoilerplate\Domain\Users\Models\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,32 +22,44 @@ class BladeServiceProvider extends ServiceProvider
 
         //user is subscribed
         Blade::if ('subscribed', function () {
-            return auth()->user()->hasSubscription();
+            /** @var User $user */
+            $user = auth()->user();
+            return $user->hasSubscription();
         });
 
         //user does not have subscription
         Blade::if ('notsubscribed', function () {
-            return !auth()->check() || auth()->user()->doesNotHaveSubscription();
+            /** @var User $user */
+            $user = auth()->user();
+            return !auth()->check() || $user->doesNotHaveSubscription();
         });
 
         //user has cancelled subscription
         Blade::if ('subscriptioncancelled', function () {
-            return auth()->user()->hasCancelled();
+            /** @var User $user */
+            $user = auth()->user();
+            return $user->hasCancelled();
         });
 
         //user has not cancelled subscription
         Blade::if ('subscriptionnotcancelled', function () {
-            return !auth()->check() || auth()->user()->hasNotCancelled();
+            /** @var User $user */
+            $user = auth()->user();
+            return !auth()->check() || $user->hasNotCancelled();
         });
 
         //user has a team subscription
         Blade::if ('teamsubscription', function () {
-            return auth()->user()->hasTeamSubscription();
+            /** @var User $user */
+            $user = auth()->user();
+            return $user->hasTeamSubscription();
         });
 
         //user does not have a piggyback subscription
         Blade::if ('notpiggybacksubscription', function () {
-            return !auth()->user()->hasPiggybackSubscription();
+            /** @var User $user */
+            $user = auth()->user();
+            return !$user->hasPiggybackSubscription();
         });
     }
 

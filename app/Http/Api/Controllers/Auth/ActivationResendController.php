@@ -7,6 +7,7 @@ use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Auth\Events\UserRequestedActivationEmail;
 use SAASBoilerplate\Domain\Auth\Requests\ActivateResendRequest;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\Http\JsonResponse;
 
 class ActivationResendController extends Controller
 {
@@ -15,7 +16,7 @@ class ActivationResendController extends Controller
      * Resend activation link.
      *
      * @param ActivateResendRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(ActivateResendRequest $request)
     {

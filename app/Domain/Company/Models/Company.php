@@ -4,7 +4,8 @@ namespace SAASBoilerplate\Domain\Company\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use SAASBoilerplate\App\Tenant\Traits\IsTenant;
-use SAASBoilerplate\Domain\Project\Models\Project;
+use SAASBoilerplate\Domain\Projects\Models\Project;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
@@ -20,7 +21,7 @@ class Company extends Model
     /**
      * Get projects owned by company.
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function projects()
     {

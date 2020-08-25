@@ -2,7 +2,7 @@
 
 namespace SAASBoilerplate\Http\Api\Controllers\Account;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Requests\DeactivateAccountRequest;
 
@@ -13,7 +13,7 @@ class DeactivateController extends Controller
      * Handle account deactivation.
      *
      * @param DeactivateAccountRequest $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(DeactivateAccountRequest $request)
     {

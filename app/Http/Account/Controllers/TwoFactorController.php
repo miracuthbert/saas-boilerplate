@@ -2,7 +2,12 @@
 
 namespace SAASBoilerplate\Http\Account\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 use PragmaRX\Countries\Package\Countries;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\App\TwoFactor\TwoFactor;
@@ -14,7 +19,7 @@ class TwoFactorController extends Controller
     /**
      * Show the two factor auth view.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|Application|Response|View
      */
     public function index()
     {
@@ -26,7 +31,7 @@ class TwoFactorController extends Controller
      *
      * @param TwoFactorStoreRequest $request
      * @param TwoFactor $twoFactor
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(TwoFactorStoreRequest $request, TwoFactor $twoFactor)
     {
@@ -50,7 +55,7 @@ class TwoFactorController extends Controller
      * Verify phone number.
      *
      * @param TwoFactorVerifyRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function verify(TwoFactorVerifyRequest $request)
     {
@@ -58,7 +63,7 @@ class TwoFactorController extends Controller
             'verified' => true
         ]);
 
-        return back()->withSuccess('Your phone number has been verified.');
+        return back()->with('success','Your phone number has been verified.');
     }
 
     /**
@@ -66,7 +71,7 @@ class TwoFactorController extends Controller
      *
      * @param  Request $request
      * @param TwoFactor $twoFactor
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Request $request, TwoFactor $twoFactor)
     {
@@ -75,7 +80,7 @@ class TwoFactorController extends Controller
         if ($twoFactor->delete($user)) {
             $user->twoFactor()->delete();
 
-            return back()->withSuccess('Two factor authentication has been disabled.');
+            return back()->with('success','Two factor authentication has been disabled.');
         }
 
         return back();

@@ -16,7 +16,7 @@ class ActivationEmail extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $token
      */
     public function __construct($token)
     {

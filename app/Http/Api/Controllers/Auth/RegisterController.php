@@ -2,7 +2,7 @@
 
 namespace SAASBoilerplate\Http\Api\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Auth\Events\UserSignedUp;
 use SAASBoilerplate\Domain\Auth\Requests\UserSignUpRequest;
@@ -14,7 +14,7 @@ class RegisterController extends Controller
      * Handles the registration request and stores user in storage.
      *
      * @param UserSignUpRequest $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function register(UserSignUpRequest $request)
     {

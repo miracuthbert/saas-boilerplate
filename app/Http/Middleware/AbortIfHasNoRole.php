@@ -3,14 +3,15 @@
 namespace SAASBoilerplate\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class AbortIfHasNoRole
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  Request $request
+     * @param  Closure  $next
      * @param $role
      * @param null $permission
      * @return mixed

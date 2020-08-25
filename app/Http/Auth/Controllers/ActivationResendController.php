@@ -6,14 +6,19 @@ use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Auth\Events\UserRequestedActivationEmail;
 use SAASBoilerplate\Domain\Auth\Requests\ActivateResendRequest;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ActivationResendController extends Controller
 {
     /**
      * Show the activation resend form.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -24,7 +29,7 @@ class ActivationResendController extends Controller
      * Resend activation link.
      *
      * @param ActivateResendRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(ActivateResendRequest $request)
     {
@@ -34,6 +39,6 @@ class ActivationResendController extends Controller
         //send activation email
         event(new UserRequestedActivationEmail($user));
 
-        return redirect()->route('login')->withSuccess('An activation email has been sent.');
+        return redirect()->route('login')->with('success', 'An activation email has been sent.');
     }
 }

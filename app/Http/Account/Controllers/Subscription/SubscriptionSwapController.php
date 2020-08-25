@@ -2,13 +2,18 @@
 
 namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Mail\Subscription\SubscriptionSwapped;
 use SAASBoilerplate\Domain\Account\Requests\SubscriptionSwapStoreRequest;
 use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\View\View;
 
 class SubscriptionSwapController extends Controller
 {
@@ -16,7 +21,7 @@ class SubscriptionSwapController extends Controller
      * Show swap subscription form.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index(Request $request)
     {
@@ -29,7 +34,7 @@ class SubscriptionSwapController extends Controller
      * Store new subscription in storage.
      *
      * @param SubscriptionSwapStoreRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(SubscriptionSwapStoreRequest $request)
     {
@@ -53,7 +58,7 @@ class SubscriptionSwapController extends Controller
         // send mail to user
         Mail::to($user)->send(new SubscriptionSwapped());
 
-        return back()->withSuccess('Your subscription has been changed.');
+        return back()->with('success', 'Your subscription has been changed.');
     }
 
     /**

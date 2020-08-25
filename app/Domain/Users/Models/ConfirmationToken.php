@@ -3,6 +3,7 @@
 namespace SAASBoilerplate\Domain\Users\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ConfirmationToken extends Model
 {
@@ -45,7 +46,7 @@ class ConfirmationToken extends Model
     /**
      * Get the token user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {

@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\App\Providers;
 
+use Exception;
 use Illuminate\Support\Facades\Schema;
 use SAASBoilerplate\Domain\Users\Models\Permission;
 use Illuminate\Support\Facades\Gate;
@@ -24,7 +25,7 @@ class PermissionsServiceProvider extends ServiceProvider
                     });
                 });
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // log this or do something
         }
     }

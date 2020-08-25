@@ -2,17 +2,22 @@
 
 namespace SAASBoilerplate\Http\Admin\Controllers\User;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Admin\Requests\ImpersonateStartRequest;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class UserImpersonateController extends Controller
 {
     /**
      * Show impersonation form.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -23,7 +28,7 @@ class UserImpersonateController extends Controller
      * Setup and start user impersonation.
      *
      * @param ImpersonateStartRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(ImpersonateStartRequest $request)
     {
@@ -32,14 +37,14 @@ class UserImpersonateController extends Controller
         session()->put('impersonate', $user->id);
 
         return redirect()->route('account.dashboard')
-            ->withSuccess("You are now impersonating {$user->name}");
+            ->with('success', "You are now impersonating {$user->name}");
     }
 
     /**
      * Setup and start user impersonation.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Request $request)
     {
