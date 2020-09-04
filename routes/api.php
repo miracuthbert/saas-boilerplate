@@ -14,6 +14,9 @@
 /**
  * API Routes
  */
+
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace' => 'Api\Controllers', 'as' => 'api.'], function () {
 
     /**

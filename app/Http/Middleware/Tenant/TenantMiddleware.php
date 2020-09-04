@@ -5,14 +5,15 @@ namespace SAASBoilerplate\Http\Middleware\Tenant;
 use Closure;
 use SAASBoilerplate\App\Tenant\Manager;
 use SAASBoilerplate\Domain\Company\Models\Company;
+use Illuminate\Http\Request;
 
 class TenantMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param  Request $request
+     * @param  Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)

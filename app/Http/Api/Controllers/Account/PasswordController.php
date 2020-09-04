@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\Http\Api\Controllers\Account;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use SAASBoilerplate\App\Controllers\Controller;
@@ -15,7 +16,7 @@ class PasswordController extends Controller
      * Store user's new password in storage.
      *
      * @param PasswordStoreRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(PasswordStoreRequest $request)
     {

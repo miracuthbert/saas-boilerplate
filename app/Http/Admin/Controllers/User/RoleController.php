@@ -4,8 +4,15 @@ namespace SAASBoilerplate\Http\Admin\Controllers\User;
 
 use Carbon\Carbon;
 use SAASBoilerplate\Domain\Users\Models\Role;
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
@@ -13,8 +20,8 @@ class RoleController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Application|Factory|Response|View
+     * @throws AuthorizationException
      */
     public function index(Request $request)
     {
@@ -36,8 +43,8 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Application|Factory|Response|View
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -49,9 +56,9 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Request  $request
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
@@ -63,14 +70,14 @@ class RoleController extends Controller
 
         return redirect()
             ->route('admin.roles.index')
-            ->withSuccess("{$request->name} role created successfully.");
+            ->with('success', "{$request->name} role created successfully.");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
+     * @param  Role  $role
+     * @throws AuthorizationException
      */
     public function show(Role $role)
     {
@@ -80,9 +87,9 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Role  $role
+     * @return Application|Factory|Response|View
+     * @throws AuthorizationException
      */
     public function edit(Role $role)
     {
@@ -93,10 +100,10 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Request  $request
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(Request $request, Role $role)
     {
@@ -106,16 +113,16 @@ class RoleController extends Controller
 
         $role->save();
 
-        return back()->withSuccess("{$role->name} role updated successfully.");
+        return back()->with('success', "{$role->name} role updated successfully.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws Exception
+     * @throws AuthorizationException
      */
     public function destroy(Role $role)
     {
@@ -124,9 +131,9 @@ class RoleController extends Controller
         if (!$role->users->count()) {
             $role->delete();
 
-            return back()->withSuccess("{$role->name} deleted successfully.");
+            return back()->with('success', "{$role->name} deleted successfully.");
         }
 
-        return back()->withError("{$role->name} cannot be deleted since it has been assigned to users.");
+        return back()->withErrors(["{$role->name} cannot be deleted since it has been assigned to users."]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use SAASBoilerplate\Domain\Company\Models\Company;
+use SAASBoilerplate\Domain\Projects\Models\Project;
 use Illuminate\Database\Seeder;
 
 class ProjectTableSeeder extends Seeder
@@ -11,10 +13,10 @@ class ProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        $companies = \SAASBoilerplate\Domain\Company\Models\Company::limit(2)->get();
+        $companies = Company::limit(2)->get();
 
         $companies->each(function ($u) {
-            $u->projects()->saveMany(factory(\SAASBoilerplate\Domain\Project\Models\Project::class, 5)->make());
+            $u->projects()->saveMany(factory(Project::class, 5)->make());
         });
 
     }

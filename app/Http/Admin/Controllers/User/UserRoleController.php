@@ -5,17 +5,23 @@ namespace SAASBoilerplate\Http\Admin\Controllers\User;
 use Carbon\Carbon;
 use SAASBoilerplate\Domain\Users\Models\Role;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class UserRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  User  $user
+     * @return Application|Factory|Response|View
+     * @throws AuthorizationException
      */
     public function index(User $user)
     {
@@ -32,10 +38,10 @@ class UserRoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Request  $request
+     * @param  User  $user
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request, User $user)
     {
@@ -48,20 +54,20 @@ class UserRoleController extends Controller
         $assigned = $user->assignRole($role, $request->expires_at);
 
         if ($assigned) {
-            return back()->withSuccess("{$user->name} has been assigned {$role->name} role.");
+            return back()->with('success', "{$user->name} has been assigned {$role->name} role.");
         }
 
-        return back()->withSuccess("Failed assigning user {$role->name} role.");
+        return back()->with('success', "Failed assigning user {$role->name} role.");
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Request  $request
+     * @param  User  $user
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(Request $request, User $user, Role $role)
     {
@@ -70,19 +76,19 @@ class UserRoleController extends Controller
         $updated = $user->updateRole($role, $request->expires_at);
 
         if ($updated) {
-            return back()->withSuccess("{$user->name}'s {$role->name} role updated.");
+            return back()->with('success', "{$user->name}'s {$role->name} role updated.");
         }
 
-        return back()->withError("Failed updating user's {$role->name} role.");
+        return back()->withErrors(["Failed updating user's {$role->name} role."]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  User  $user
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(User $user, Role $role)
     {
@@ -91,9 +97,9 @@ class UserRoleController extends Controller
         $updated = $user->updateRole($role, Carbon::now());
 
         if ($updated) {
-            return back()->withSuccess("{$user->name}'s {$role->name} role revoked.");
+            return back()->with('success', "{$user->name}'s {$role->name} role revoked.");
         }
 
-        return back()->withError("{$user->name} does not have an active {$role->name} role.");
+        return back()->withErrors(["{$user->name} does not have an active {$role->name} role."]);
     }
 }

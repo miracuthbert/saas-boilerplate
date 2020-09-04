@@ -4,6 +4,7 @@ namespace SAASBoilerplate\Domain\Users\Models;
 
 use SAASBoilerplate\App\Traits\Eloquent\Ordering\OrderableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Permission extends Model
 {
@@ -17,7 +18,7 @@ class Permission extends Model
     /**
      * The roles that belong to the permission.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function roles()
     {

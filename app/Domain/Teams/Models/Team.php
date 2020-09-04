@@ -4,6 +4,8 @@ namespace SAASBoilerplate\Domain\Teams\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use SAASBoilerplate\Domain\Users\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
@@ -14,7 +16,7 @@ class Team extends Model
     /**
      * Get user that owns of team.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function owner()
     {
@@ -24,7 +26,7 @@ class Team extends Model
     /**
      * Get users that belong to team.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function users()
     {

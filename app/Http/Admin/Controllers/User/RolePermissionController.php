@@ -4,17 +4,23 @@ namespace SAASBoilerplate\Http\Admin\Controllers\User;
 
 use SAASBoilerplate\Domain\Users\Models\Permission;
 use SAASBoilerplate\Domain\Users\Models\Role;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class RolePermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Role  $role
+     * @return Application|Factory|Response|View
+     * @throws AuthorizationException
      */
     public function index(Role $role)
     {
@@ -28,10 +34,10 @@ class RolePermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Request  $request
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request, Role $role)
     {
@@ -43,20 +49,20 @@ class RolePermissionController extends Controller
 
             $role->permissions()->attach($permission);
 
-            return back()->withSuccess("{$role->name} assigned permission.");
+            return back()->with('success', "{$role->name} assigned permission.");
         }
 
-        return back()->withInput()->withError("{$role->name} has permission already.");
+        return back()->withInput()->withErrors(["{$role->name} has permission already."]);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission $permission
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param  Role  $role
+     * @param  Permission  $permission
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(Role $role, Permission $permission)
     {
@@ -66,9 +72,9 @@ class RolePermissionController extends Controller
 
             $role->permissions()->detach($permission->id);
 
-            return back()->withSuccess("{$permission->name} removed from role.");
+            return back()->with('success', "{$permission->name} removed from role.");
         }
 
-        return back()->withError("Role does not have {$permission->name} permission.");
+        return back()->withErrors(["Role does not have {$permission->name} permission."]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\Http\Api\Controllers\Account;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Requests\ProfileStoreRequest;
@@ -24,7 +25,7 @@ class ProfileController extends Controller
      * Store user's profile details in storage.
      *
      * @param ProfileStoreRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(ProfileStoreRequest $request)
     {

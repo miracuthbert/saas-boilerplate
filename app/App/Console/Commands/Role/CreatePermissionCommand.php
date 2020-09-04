@@ -2,6 +2,7 @@
 
 namespace SAASBoilerplate\App\Console\Commands\Role;
 
+use Exception;
 use Illuminate\Console\Command;
 use SAASBoilerplate\Domain\Users\Models\Permission;
 use SAASBoilerplate\Domain\Users\Models\Role;
@@ -63,7 +64,7 @@ class CreatePermissionCommand extends Command
         $usable = $this->argument('usable');
 
         // role slug
-        $slug = $this->option('role', null);
+        $slug = $this->option('role');
 
         try {
             // find role or set null
@@ -89,7 +90,7 @@ class CreatePermissionCommand extends Command
                     $this->info(sprintf('Assigned permission: `%s` to `%s` role', $name, $role->name));
                 }
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->error(
                 sprintf(
                     'Whoops! we could not create permission because: %s',

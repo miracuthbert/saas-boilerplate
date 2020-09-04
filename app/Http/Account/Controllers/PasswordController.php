@@ -5,15 +5,20 @@ namespace SAASBoilerplate\Http\Account\Controllers;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Account\Mail\PasswordUpdated;
 use SAASBoilerplate\Domain\Account\Requests\PasswordStoreRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class PasswordController extends Controller
 {
     /**
      * Show the change password view.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -24,7 +29,7 @@ class PasswordController extends Controller
      * Store user's new password in storage.
      *
      * @param PasswordStoreRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(PasswordStoreRequest $request)
     {
@@ -37,6 +42,6 @@ class PasswordController extends Controller
         // redirect with success
         return redirect()
             ->route('account.index')
-            ->withSuccess('Password updated successfully.');
+            ->with('success', 'Password updated successfully.');
     }
 }

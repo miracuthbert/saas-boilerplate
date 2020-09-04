@@ -2,6 +2,9 @@
 
 namespace SAASBoilerplate\Domain\Users\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
@@ -142,7 +145,7 @@ class User extends Authenticatable
     /**
      * Get team owned by user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function team()
     {
@@ -172,7 +175,7 @@ class User extends Authenticatable
     /**
      * Get plans owned by the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return HasManyThrough
      */
     public function plans()
     {
@@ -189,7 +192,7 @@ class User extends Authenticatable
     /**
      * Get teams that user belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function teams()
     {
@@ -213,7 +216,7 @@ class User extends Authenticatable
     /**
      * Get companies that user belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function companies()
     {

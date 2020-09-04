@@ -2,11 +2,14 @@
 
 namespace SAASBoilerplate\Http\Auth\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use SAASBoilerplate\Domain\Account\Requests\TwoFactor\TwoFactorVerifyRequest;
-use SAASBoilerplate\Domain\Users\Models\User;
-use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\View\View;
 
 class TwoFactorLoginController extends Controller
 {
@@ -20,7 +23,7 @@ class TwoFactorLoginController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -31,7 +34,7 @@ class TwoFactorLoginController extends Controller
      * Verify token and login user.
      *
      * @param TwoFactorVerifyRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function verify(TwoFactorVerifyRequest $request)
     {

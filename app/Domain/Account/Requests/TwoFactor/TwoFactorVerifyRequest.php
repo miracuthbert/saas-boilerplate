@@ -21,6 +21,7 @@ class TwoFactorVerifyRequest extends FormRequest
      */
     public function __construct(TwoFactor $twoFactor)
     {
+        parent::__construct();
         $this->twoFactor = $twoFactor;
     }
 

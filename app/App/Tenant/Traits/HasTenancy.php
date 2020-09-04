@@ -8,6 +8,8 @@
 
 namespace SAASBoilerplate\App\Tenant\Traits;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 trait HasTenancy
 {
     /**
@@ -23,7 +25,7 @@ trait HasTenancy
     /**
      * Get tenants that user belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function companies()
     {

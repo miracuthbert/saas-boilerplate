@@ -7723,7 +7723,7 @@ function nodeName( elem, name ) {
 
   return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-};
+}
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -51429,13 +51429,13 @@ var map = {
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
-};
+}
 function webpackContextResolve(req) {
 	var id = map[req];
 	if(!(id + 1)) // check for number or string
 		throw new Error("Cannot find module '" + req + "'.");
 	return id;
-};
+}
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
 };

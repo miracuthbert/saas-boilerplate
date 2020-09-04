@@ -3,15 +3,21 @@
 namespace SAASBoilerplate\Http\Admin\Controllers\User;
 
 use SAASBoilerplate\Domain\Users\Models\Permission;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -23,7 +29,7 @@ class PermissionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
@@ -33,8 +39,8 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -42,14 +48,14 @@ class PermissionController extends Controller
 
         return redirect()
             ->route('admin.permissions.index')
-            ->withSuccess("{$request->name} permission created successfully.");
+            ->with('success', "{$request->name} permission created successfully.");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
+     * @param  Permission  $permission
+     * @return void
      */
     public function show(Permission $permission)
     {
@@ -59,8 +65,8 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
+     * @param  Permission  $permission
+     * @return Application|Factory|Response|View
      */
     public function edit(Permission $permission)
     {
@@ -70,9 +76,9 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Permission  $permission
+     * @return RedirectResponse
      */
     public function update(Request $request, Permission $permission)
     {
@@ -80,24 +86,24 @@ class PermissionController extends Controller
 
         $permission->save();
 
-        return back()->withSuccess("{$permission->name} permission updated successfully.");
+        return back()->with('success', "{$permission->name} permission updated successfully.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission $permission
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param  Permission  $permission
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Permission $permission)
     {
         if (!$permission->roles->count()) {
             $permission->delete();
 
-            return back()->withSuccess("{$permission->name} deleted successfully.");
+            return back()->with('success', "{$permission->name} deleted successfully.");
         }
 
-        return back()->withError("{$permission->name} cannot be deleted since it has been linked to role(s).");
+        return back()->withErrors(["{$permission->name} cannot be deleted since it has been linked to role(s)."]);
     }
 }

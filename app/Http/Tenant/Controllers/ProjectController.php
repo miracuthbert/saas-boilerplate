@@ -2,16 +2,22 @@
 
 namespace SAASBoilerplate\Http\Tenant\Controllers;
 
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use SAASBoilerplate\App\Controllers\Controller;
 use SAASBoilerplate\Domain\Projects\Models\Project;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -23,7 +29,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
@@ -33,8 +39,8 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -43,14 +49,14 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->route('tenant.projects.index')
-            ->withSuccess('Project created successfully.');
+            ->with('success','Project created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Projects\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @param  Project  $project
+     * @return void
      */
     public function show(Project $project)
     {
@@ -60,8 +66,8 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Projects\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @param  Project  $project
+     * @return Application|Factory|Response|View
      */
     public function edit(Project $project)
     {
@@ -71,29 +77,29 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Projects\Models\Project $project
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Project  $project
+     * @return RedirectResponse
      */
     public function update(Request $request, Project $project)
     {
         $project->fill($request->only('name'));
         $project->save();
 
-        return back()->withSuccess('Project updated successfully.');
+        return back()->with('success', 'Project updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Projects\Models\Project $project
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param  Project  $project
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Project $project)
     {
         $project->delete();
 
-        return back()->withSuccess("{$project->name} project deleted successfully.");
+        return back()->with('success', "{$project->name} project deleted successfully.");
     }
 }
