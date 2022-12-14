@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
-use SAASBoilerplate\Domain\Categories\Models\Category;
+use SAAS\Domain\Categories\Models\Category;
 use Illuminate\View\View;
 
 class CategoriesComposer

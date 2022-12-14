@@ -6,11 +6,11 @@
  * Time: 10:12 AM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Roles;
+namespace SAAS\App\Traits\Eloquent\Roles;
 
 use Carbon\Carbon;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Models\UserRole;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\UserRole;
 
 trait HasRoles
 {

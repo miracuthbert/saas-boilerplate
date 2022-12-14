@@ -1,9 +1,9 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Users\Models\ConfirmationToken;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Users\Models\ConfirmationToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

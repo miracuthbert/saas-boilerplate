@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Controllers;
+namespace SAAS\App\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

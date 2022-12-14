@@ -6,9 +6,9 @@
  * Time: 12:21 PM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Auth;
+namespace SAAS\App\Traits\Eloquent\Auth;
 
-use SAASBoilerplate\Domain\Users\Models\TwoFactor;
+use SAAS\Domain\Users\Models\TwoFactor;
 
 trait HasTwoFactorAuthentication
 {

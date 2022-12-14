@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Auth\Events;
+namespace SAAS\Domain\Auth\Events;
 
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 

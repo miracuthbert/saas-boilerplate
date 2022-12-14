@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller

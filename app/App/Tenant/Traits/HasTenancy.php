@@ -6,7 +6,7 @@
  * Time: 5:13 PM
  */
 
-namespace SAASBoilerplate\App\Tenant\Traits;
+namespace SAAS\App\Tenant\Traits;
 
 trait HasTenancy
 {

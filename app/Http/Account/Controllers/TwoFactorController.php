@@ -1,13 +1,13 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers;
+namespace SAAS\Http\Account\Controllers;
 
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\App\TwoFactor\TwoFactor;
-use SAASBoilerplate\Domain\Account\Requests\TwoFactor\TwoFactorStoreRequest;
-use SAASBoilerplate\Domain\Account\Requests\TwoFactor\TwoFactorVerifyRequest;
+use SAAS\App\Controllers\Controller;
+use SAAS\App\TwoFactor\TwoFactor;
+use SAAS\Http\Account\Requests\TwoFactor\TwoFactorStoreRequest;
+use SAAS\Http\Account\Requests\TwoFactor\TwoFactorVerifyRequest;
 
 class TwoFactorController extends Controller
 {

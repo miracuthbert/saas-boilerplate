@@ -6,11 +6,11 @@
  * Time: 12:05 PM
  */
 
-namespace SAASBoilerplate\Domain\Users\Filters;
+namespace SAAS\Domain\Users\Filters;
 
 
-use SAASBoilerplate\App\Filters\FilterAbstract;
-use SAASBoilerplate\Domain\Users\Models\Role;
+use Miracuthbert\Filters\FilterAbstract;
+use SAAS\Domain\Users\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 
 class RoleFilter extends FilterAbstract

@@ -1,24 +1,16 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Users\Models;
+namespace SAAS\Domain\Users\Models;
 
-use SAASBoilerplate\App\Traits\Eloquent\Ordering\OrderableTrait;
-use SAASBoilerplate\App\Traits\Eloquent\Ordering\PivotOrderableTrait;
-use SAASBoilerplate\Domain\Users\Filters\Roles\RoleFilters;
+use SAAS\App\Traits\Eloquent\Ordering\OrderableTrait;
+use SAAS\App\Traits\Eloquent\Ordering\PivotOrderableTrait;
+use SAAS\Domain\Users\Filters\Roles\RoleFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\NodeTrait;
 
-class Role extends Model
+class Role extends \Miracuthbert\LaravelRoles\Models\Role
 {
-    use NodeTrait, OrderableTrait, PivotOrderableTrait;
-
-    protected $fillable = [
-        'name',
-        'slug',
-        'details',
-        'usable'
-    ];
+    use OrderableTrait, PivotOrderableTrait;
 
     /**
      * The attributes that should be mutated to dates.
@@ -26,6 +18,47 @@ class Role extends Model
      * @var array
      */
     protected $dates = ['expires_at'];
+
+    /**
+     * The attributes that should be cast.     
+     * 
+     * @var array     
+     */
+    protected $casts = [
+        'usable' => 'boolean',
+    ];
+
+    /**
+     * Sets role order based on node.
+     *
+     * @param $order
+     * @param $node
+     * @return $this
+     */
+    public function setRoleOrder($order, $node)
+    {
+        if ($node == $this->id) {
+            return $this;
+        }
+
+        $node = Role::find($node);
+
+        switch ($order):
+            case 'child':
+                $this->parent()->associate($node);
+                break;
+
+            case 'after':
+                $this->afterNode($node);
+                break;
+
+            case 'before':
+                $this->beforeNode($node);
+                break;
+        endswitch;
+
+        return $this;
+    }
 
     /**
      * Get the route key for the model.

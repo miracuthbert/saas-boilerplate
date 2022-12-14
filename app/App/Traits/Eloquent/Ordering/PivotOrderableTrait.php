@@ -6,7 +6,7 @@
  * Time: 7:06 PM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Ordering;
+namespace SAAS\App\Traits\Eloquent\Ordering;
 
 
 trait PivotOrderableTrait

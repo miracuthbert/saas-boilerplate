@@ -4,17 +4,17 @@
     <div class="card">
 
         <div class="card-body">
-            <h4 class="card-title">Swap subscription</h4>
+            <h4 class="card-title">{{ __('Swap subscription') }}</h4>
             <p class="card-subtitle mb-2">
-                Current plan: {{ auth()->user()->plan->name }}
+                {{ __('Current plan: :name', ['name' => auth()->user()->plan->name]) }}
                 ({{ config('settings.cashier.currency.symbol') }}{{ auth()->user()->plan->price }})
             </p>
 
             <form method="POST" action="{{ route('account.subscription.swap.store') }}">
-                {{ csrf_field() }}
+                @csrf
 
                 <div class="form-group row{{ $errors->has('plan') ? ' has-error' : '' }}">
-                    <label for="plan" class="col-md-4 control-label">Plan</label>
+                    <label for="plan" class="col-md-4 control-label">{{ __('Plan') }}</label>
 
                     <div class="col-md-6">
 
@@ -41,7 +41,7 @@
                 <div class="form-group row">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            Update
+                            {{ __('Update') }}
                         </button>
                     </div>
                 </div>

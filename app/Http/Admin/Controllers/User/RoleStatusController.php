@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
-use SAASBoilerplate\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\Role;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class RoleStatusController extends Controller
 {
@@ -12,7 +12,7 @@ class RoleStatusController extends Controller
      * Update the specified resource status in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

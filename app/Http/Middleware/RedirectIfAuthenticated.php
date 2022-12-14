@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware;
+namespace SAAS\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

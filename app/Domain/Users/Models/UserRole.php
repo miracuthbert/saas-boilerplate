@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Users\Models;
+namespace SAAS\Domain\Users\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -9,8 +9,8 @@ class UserRole extends Pivot
 {
     protected $table = 'user_roles';
 
-    protected $dates = [
-        'expires_at'
+    protected $casts = [
+        'expires_at' => 'datetime'
     ];
 
     /**

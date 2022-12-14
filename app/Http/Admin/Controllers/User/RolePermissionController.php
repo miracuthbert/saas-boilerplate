@@ -1,18 +1,18 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
-use SAASBoilerplate\Domain\Users\Models\Permission;
-use SAASBoilerplate\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\Permission;
+use SAAS\Domain\Users\Models\Role;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class RolePermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -29,7 +29,7 @@ class RolePermissionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -41,7 +41,7 @@ class RolePermissionController extends Controller
 
         if (!$role->permissions->contains($permission)) {
 
-            $role->permissions()->attach($permission);
+            $role->addPermissions($permission);
 
             return back()->withSuccess("{$role->name} assigned permission.");
         }
@@ -53,8 +53,8 @@ class RolePermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission $permission
+     * @param  \SAAS\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\Permission $permission
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -64,7 +64,7 @@ class RolePermissionController extends Controller
 
         if ($role->permissions->contains($permission)) {
 
-            $role->permissions()->detach($permission->id);
+            $role->detachPermissions($permission->id);
 
             return back()->withSuccess("{$permission->name} removed from role.");
         }

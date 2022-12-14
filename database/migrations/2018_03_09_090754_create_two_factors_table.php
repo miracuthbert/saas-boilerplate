@@ -14,8 +14,8 @@ class CreateTwoFactorsTable extends Migration
     public function up()
     {
         Schema::create('two_factor', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->id();
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->string('identifier')->nullable();
             $table->string('phone');
             $table->string('dial_code');

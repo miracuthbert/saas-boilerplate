@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Subscriptions\Models;
+namespace SAAS\Domain\Subscriptions\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,7 +25,7 @@ class Plan extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

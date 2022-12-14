@@ -1,14 +1,14 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
+namespace SAAS\Http\Account\Controllers\Subscription;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Mail\Subscription\SubscriptionSwapped;
-use SAASBoilerplate\Domain\Account\Requests\SubscriptionSwapStoreRequest;
-use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Account\Mail\Subscription\SubscriptionSwapped;
+use SAAS\Http\Account\Requests\SubscriptionSwapStoreRequest;
+use SAAS\Domain\Subscriptions\Models\Plan;
+use SAAS\Domain\Users\Models\User;
 
 class SubscriptionSwapController extends Controller
 {
@@ -38,7 +38,7 @@ class SubscriptionSwapController extends Controller
         $plan = Plan::where('gateway_id', $request->plan)->first();
 
         if ($this->downgradesFromTeamPlan($user, $plan)) {
-            //todo: uncomment lines below and create event to email each user on the team
+            // todo: uncomment lines below and create event to email each user on the team
 
             // $user->team->users()->each(function() {
                 // fire event to mail users here
@@ -48,7 +48,7 @@ class SubscriptionSwapController extends Controller
             $user->team->users()->detach();
         }
 
-        $user->subscription('main')->swap($plan->gateway_id);
+        $user->subscription('main')->swap([$user->plan->gateway_id, $plan->gateway_id]);
 
         // send mail to user
         Mail::to($user)->send(new SubscriptionSwapped());

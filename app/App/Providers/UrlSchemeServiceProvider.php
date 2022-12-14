@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;

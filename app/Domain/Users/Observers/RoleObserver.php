@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Users\Observers;
+namespace SAAS\Domain\Users\Observers;
 
-use SAASBoilerplate\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\Role;
 
 class RoleObserver
 {

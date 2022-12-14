@@ -6,13 +6,13 @@
  * Time: 1:46 PM
  */
 
-namespace SAASBoilerplate\Domain\Users\Filters\Roles;
+namespace SAAS\Domain\Users\Filters\Roles;
 
 
-use SAASBoilerplate\App\Filters\FiltersAbstract;
-use SAASBoilerplate\App\Filters\Ordering\CreatedOrder;
-use SAASBoilerplate\Domain\Users\Filters\PermissionFilter;
-use SAASBoilerplate\Domain\Users\Models\Permission;
+use Miracuthbert\Filters\FiltersAbstract;
+use SAAS\App\Filters\Ordering\CreatedOrder;
+use SAAS\Domain\Users\Filters\PermissionFilter;
+use SAAS\Domain\Users\Models\Permission;
 
 class RoleFilters extends FiltersAbstract
 {

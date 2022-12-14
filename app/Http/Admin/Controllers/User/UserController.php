@@ -1,10 +1,12 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
+use SAAS\App\Actions\Fortify\CreateNewUser;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -32,6 +34,8 @@ class UserController extends Controller
     public function create()
     {
         $this->authorize('create', User::class);
+
+        return view('admin.users.create');
     }
 
     /**
@@ -40,15 +44,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CreateNewUser $user)
     {
         $this->authorize('create', User::class);
+
+        $user->create($request->all(), ['terms', 'password'], true);
+
+        return back()->withSuccess(__('User created successfully.'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -59,7 +67,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -71,7 +79,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -82,7 +90,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

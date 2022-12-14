@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Api\Controllers\Account;
+namespace SAAS\Http\Api\Controllers\Account;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Requests\ProfileStoreRequest;
-use SAASBoilerplate\Domain\Users\Resources\UserResource;
+use SAAS\App\Controllers\Controller;
+use SAAS\Http\Account\Requests\ProfileStoreRequest;
+use SAAS\Http\Users\Resources\UserResource;
 
 class ProfileController extends Controller
 {

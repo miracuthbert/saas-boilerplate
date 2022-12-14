@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Account\Rules;
+namespace SAAS\Domain\Account\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use PragmaRX\Countries\Package\Countries;

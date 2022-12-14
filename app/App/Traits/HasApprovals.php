@@ -6,7 +6,7 @@
  * Time: 10:09 AM
  */
 
-namespace SAASBoilerplate\App\Traits;
+namespace SAAS\App\Traits;
 
 
 use Illuminate\Database\Eloquent\Builder;

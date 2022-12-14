@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
-use SAASBoilerplate\Domain\Users\Models\Permission;
+use SAAS\Domain\Users\Models\Permission;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class PermissionStatusController extends Controller
 {
@@ -12,7 +12,7 @@ class PermissionStatusController extends Controller
      * Update the specified resource status in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
+     * @param  \SAAS\Domain\Users\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function toggleStatus(Request $request, Permission $permission)

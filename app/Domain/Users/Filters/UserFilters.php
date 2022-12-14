@@ -6,12 +6,12 @@
  * Time: 12:02 PM
  */
 
-namespace SAASBoilerplate\Domain\Users\Filters;
+namespace SAAS\Domain\Users\Filters;
 
 
-use SAASBoilerplate\App\Filters\FiltersAbstract;
-use SAASBoilerplate\App\Filters\Ordering\CreatedOrder;
-use SAASBoilerplate\Domain\Users\Models\Role;
+use Miracuthbert\Filters\FiltersAbstract;
+use SAAS\App\Filters\Ordering\CreatedOrder;
+use SAAS\Domain\Users\Models\Role;
 
 class UserFilters extends FiltersAbstract
 {

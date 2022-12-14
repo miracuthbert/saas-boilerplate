@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
-use SAASBoilerplate\App\TwoFactor\Authy;
-use SAASBoilerplate\App\TwoFactor\TwoFactor;
+use SAAS\App\TwoFactor\Authy;
+use SAAS\App\TwoFactor\TwoFactor;
 
 class TwoFactorServiceProvider extends ServiceProvider
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace SAASBoilerplate\Http\Developer\Controllers;
+namespace SAAS\Http\Developer\Controllers;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class DeveloperController extends Controller
 {

@@ -6,8 +6,7 @@
  * Time: 12:46 PM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Subscriptions;
-
+namespace SAAS\App\Traits\Eloquent\Subscriptions;
 
 trait HasSubscriptions
 {
@@ -38,11 +37,20 @@ trait HasSubscriptions
      */
     public function hasPiggybackSubscription()
     {
-        foreach ($this->teams as $team) {
-            if ($team->owner->hasSubscription()) {
-                return true;
-            }
+        $teams = $this->teams()->where('teams.user_id', '!=', $this->id)->whereHas('owner', function($query) {
+            return $query->whereHas('subscriptions', fn($q) => $q->active());
+        })->count();
+
+        if ($teams > 0) {
+            return true;
         }
+
+        // todo: cleanup later
+        // foreach ($this->teams as $team) {
+        //     if ($team->owner->hasSubscription()) {
+        //         return true;
+        //     }
+        // }
         return false;
     }
 

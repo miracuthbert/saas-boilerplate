@@ -6,10 +6,10 @@
  * Time: 10:38 PM
  */
 
-namespace SAASBoilerplate\App\Filters\Ordering;
+namespace SAAS\App\Filters\Ordering;
 
 
-use SAASBoilerplate\App\Filters\FilterAbstract;
+use Miracuthbert\Filters\FilterAbstract;
 use Illuminate\Database\Eloquent\Builder;
 
 class CreatedOrder extends FilterAbstract

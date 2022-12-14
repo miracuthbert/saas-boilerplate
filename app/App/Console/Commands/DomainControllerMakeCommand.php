@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Console\Commands;
+namespace SAAS\App\Console\Commands;
 
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Support\Str;
@@ -49,9 +49,11 @@ class DomainControllerMakeCommand extends ControllerMakeCommand
      */
     protected function replaceNamespace(&$stub, $name)
     {
+        parent::replaceNamespace($stub, $name);
+        
         $stub = str_replace(
-            ['DummyNamespace', 'DummyRootNamespaceHttp', 'NamespacedDummyUserModel'],
-            [$this->getNamespace($name), $this->rootNamespace() . 'App', config('auth.providers.users.model')],
+            ['DummyNamespace', 'DummyRootNamespaceHttp', 'NamespacedDummyUserModel', 'Http\Controllers\Controller'],
+            [$this->getNamespace($name), $this->rootNamespace() . 'App', config('auth.providers.users.model'), 'App\Controllers\Controller'],
             $stub
         );
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
+namespace SAAS\Http\Account\Controllers\Subscription;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Requests\SubscriptionTeamMemberStoreRequest;
-use SAASBoilerplate\Domain\Teams\Mail\TeamMemberAdded;
-use SAASBoilerplate\Domain\Teams\Mail\TeamMemberDeleted;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Http\Account\Requests\SubscriptionTeamMemberStoreRequest;
+use SAAS\Domain\Teams\Mail\TeamMemberAdded;
+use SAAS\Domain\Teams\Mail\TeamMemberDeleted;
+use SAAS\Domain\Users\Models\User;
 
 class SubscriptionTeamMemberController extends Controller
 {

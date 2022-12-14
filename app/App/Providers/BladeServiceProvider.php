@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +26,7 @@ class BladeServiceProvider extends ServiceProvider
 
         //user does not have subscription
         Blade::if ('notsubscribed', function () {
-            return !auth()->check() || auth()->user()->doesNotHaveSubscription();
+            return auth()->check() && auth()->user()->doesNotHaveSubscription();
         });
 
         //user has cancelled subscription
@@ -36,7 +36,7 @@ class BladeServiceProvider extends ServiceProvider
 
         //user has not cancelled subscription
         Blade::if ('subscriptionnotcancelled', function () {
-            return !auth()->check() || auth()->user()->hasNotCancelled();
+            return auth()->check() && auth()->user()->hasNotCancelled();
         });
 
         //user has a team subscription

@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Company\Events;
+namespace SAAS\Domain\Company\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use SAASBoilerplate\Domain\Company\Models\Company;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Company\Models\Company;
+use SAAS\Domain\Users\Models\User;
 
 class CompanyUserLogin
 {

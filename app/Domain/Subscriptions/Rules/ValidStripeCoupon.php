@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Subscriptions\Rules;
+namespace SAAS\Domain\Subscriptions\Rules;
 
 use Exception;
 use Illuminate\Contracts\Validation\Rule;

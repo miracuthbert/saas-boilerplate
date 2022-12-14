@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware\Subscription;
+namespace SAAS\Http\Middleware\Subscription;
 
 use Closure;
 

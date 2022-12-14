@@ -14,14 +14,14 @@ class CreatePlansTable extends Migration
     public function up()
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('slug', 250)->unique();
             $table->string('gateway_id');
             $table->decimal('price', 6, 2);
             $table->boolean('active')->default(false);
             $table->boolean('teams_enabled')->default(false);
-            $table->integer('teams_limit')->nullable();
+            $table->bigInteger('teams_limit')->nullable();
             $table->timestamps();
         });
     }

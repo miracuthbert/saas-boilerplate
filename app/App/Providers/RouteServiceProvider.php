@@ -1,13 +1,25 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use SAAS\Domain\Users\Models\ConfirmationToken;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use SAASBoilerplate\Domain\Users\Models\ConfirmationToken;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/account/dashboard';
+
     /**
      * This namespace is applied to your controller routes.
      *
@@ -15,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'SAASBoilerplate\Http';
+    protected $namespace = '';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -24,9 +36,36 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
+        $this->configureRateLimiting();
 
         Route::model('confirmation_token', ConfirmationToken::class);
+
+        $this->routes(function () {
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+
+            Route::middleware(['web', 'auth', 'verified', 'permission:browse-admin'])
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(base_path('routes/admin.php'));
+
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace('SAAS\Http')
+                ->group(base_path('routes/api.php'));
+        });
+    }
+
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60);
+        });
     }
 
     /**
@@ -39,8 +78,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        $this->mapTenantRoutes();
+        
+        $this->mapAdminRoutes();
 
         //
     }
@@ -54,9 +93,23 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web', 'bindings')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+        Route::middleware('web')
+            ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::middleware(['web', 'auth', 'permission:browse-admin'])
+            ->prefix('admin')
+            ->name('admin.')
+            ->group(base_path('routes/admin.php'));
     }
 
     /**
@@ -70,21 +123,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
              ->middleware('api')
-             ->namespace($this->namespace)
+             ->namespace('SAAS\Http')
              ->group(base_path('routes/api.php'));
-    }
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapTenantRoutes()
-    {
-        Route::middleware('web', 'tenant', 'bindings')
-            ->namespace("{$this->namespace}\Tenant\Controllers")
-            ->group(base_path('routes/tenant.php'));
     }
 }

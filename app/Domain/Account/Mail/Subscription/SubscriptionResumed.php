@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Account\Mail\Subscription;
+namespace SAAS\Domain\Account\Mail\Subscription;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

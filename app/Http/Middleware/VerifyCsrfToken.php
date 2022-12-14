@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware;
+namespace SAAS\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 

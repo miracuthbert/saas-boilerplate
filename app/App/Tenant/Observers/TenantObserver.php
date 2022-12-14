@@ -6,7 +6,7 @@
  * Time: 6:12 PM
  */
 
-namespace SAASBoilerplate\App\Tenant\Observers;
+namespace SAAS\App\Tenant\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 

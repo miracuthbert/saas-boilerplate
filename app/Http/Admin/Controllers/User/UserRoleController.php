@@ -1,19 +1,19 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
 use Carbon\Carbon;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class UserRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -33,7 +33,7 @@ class UserRoleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\User $user
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -58,8 +58,8 @@ class UserRoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -79,8 +79,8 @@ class UserRoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\User $user
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

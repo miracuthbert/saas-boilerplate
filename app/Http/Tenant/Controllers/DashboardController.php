@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Tenant\Controllers;
+namespace SAAS\Http\Tenant\Controllers;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Projects\Models\Project;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Projects\Models\Project;
 
 class DashboardController extends Controller
 {

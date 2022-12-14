@@ -1,15 +1,17 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Projects\Models;
+namespace SAAS\Domain\Projects\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use SAASBoilerplate\App\Tenant\Traits\ForTenants;
+use Miracuthbert\Multitenancy\Traits\ForTenants;
 
 class Project extends Model
 {
     use Sluggable,
-        ForTenants;
+        ForTenants,
+        HasFactory;
 
     protected $fillable = [
         'name',
@@ -21,7 +23,7 @@ class Project extends Model
      *
      * @return array
      */
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

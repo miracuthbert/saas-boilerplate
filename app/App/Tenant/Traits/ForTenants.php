@@ -6,12 +6,12 @@
  * Time: 7:03 PM
  */
 
-namespace SAASBoilerplate\App\Tenant\Traits;
+namespace SAAS\App\Tenant\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use SAASBoilerplate\App\Tenant\Manager;
-use SAASBoilerplate\App\Tenant\Observers\TenantObserver;
-use SAASBoilerplate\App\Tenant\Scopes\TenantScope;
+use SAAS\App\Tenant\Manager;
+use SAAS\App\Tenant\Observers\TenantObserver;
+use SAAS\App\Tenant\Scopes\TenantScope;
 
 trait ForTenants
 {

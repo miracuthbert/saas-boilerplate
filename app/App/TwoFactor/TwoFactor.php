@@ -6,9 +6,9 @@
  * Time: 2:58 PM
  */
 
-namespace SAASBoilerplate\App\TwoFactor;
+namespace SAAS\App\TwoFactor;
 
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\User;
 
 interface TwoFactor
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
+namespace SAAS\Http\Account\Controllers\Subscription;
 
-use SAASBoilerplate\Domain\Account\Requests\SubscriptionTeamUpdateRequest;
-use SAASBoilerplate\Domain\Teams\Models\Team;
+use SAAS\Http\Account\Requests\SubscriptionTeamUpdateRequest;
+use SAAS\Domain\Teams\Models\Team;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class SubscriptionTeamController extends Controller
 {
@@ -41,7 +41,7 @@ class SubscriptionTeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Teams\Models\Team  $team
+     * @param  \SAAS\Domain\Teams\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function destroy(Team $team)

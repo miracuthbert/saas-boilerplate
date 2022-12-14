@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware\Tenant;
+namespace SAAS\Http\Middleware\Tenant;
 
 use Closure;
-use SAASBoilerplate\App\Tenant\Manager;
-use SAASBoilerplate\Domain\Company\Models\Company;
+use SAAS\App\Tenant\Manager;
+use SAAS\Domain\Company\Models\Company;
 
 class TenantMiddleware
 {

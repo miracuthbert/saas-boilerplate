@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Console\Commands;
+namespace SAAS\App\Console\Commands;
 
 use Illuminate\Foundation\Console\ProviderMakeCommand;
 

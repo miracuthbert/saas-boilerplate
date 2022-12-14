@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http;
+namespace SAAS\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -14,11 +14,14 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        // \SAAS\Http\Middleware\TrustHosts::class,
+        \SAAS\Http\Middleware\TrustProxies::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
+        // \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \SAAS\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \SAASBoilerplate\Http\Middleware\TrimStrings::class,
+        \SAAS\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \SAASBoilerplate\Http\Middleware\TrustProxies::class,
     ];
 
     /**
@@ -28,18 +31,14 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \SAASBoilerplate\Http\Middleware\EncryptCookies::class,
+            \SAAS\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \SAASBoilerplate\Http\Middleware\VerifyCsrfToken::class,
-            \SAASBoilerplate\Http\Middleware\Admin\Impersonate::class,
-        ],
-
-        'tenant' => [
-            \SAASBoilerplate\Http\Middleware\Tenant\TenantMiddleware::class,
-            \SAASBoilerplate\Http\Middleware\Tenant\TenantConfigMiddleware::class,
+            \SAAS\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \SAAS\Http\Middleware\Admin\Impersonate::class,
         ],
 
         'api' => [
@@ -61,18 +60,20 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \SAASBoilerplate\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \SAAS\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \SAAS\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'confirmation_token.expired' => \SAASBoilerplate\Http\Middleware\ChecksExpiredConfirmationTokens::class,
-        'role' => \SAASBoilerplate\Http\Middleware\AbortIfHasNoRole::class,
-        'permission' => \SAASBoilerplate\Http\Middleware\AbortIfHasNoPermission::class,
-        'auth.register' => \SAASBoilerplate\Http\Middleware\AuthenticateRegister::class,
-        'subscription.active' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNotActive::class,
-        'subscription.notcancelled' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfCancelled::class,
-        'subscription.cancelled' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNotCancelled::class,
-        'subscription.customer' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNotCustomer::class,
-        'subscription.inactive' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNotInactive::class,
-        'subscription.team' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNoTeamPlan::class,
-        'subscription.owner' => \SAASBoilerplate\Http\Middleware\Subscription\RedirectIfNotSubscriptionOwner::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'confirmation_token.expired' => \SAAS\Http\Middleware\ChecksExpiredConfirmationTokens::class,
+        'auth.register' => \SAAS\Http\Middleware\AuthenticateRegister::class,
+        'subscription.active' => \SAAS\Http\Middleware\Subscription\RedirectIfNotActive::class,
+        'subscription.notcancelled' => \SAAS\Http\Middleware\Subscription\RedirectIfCancelled::class,
+        'subscription.cancelled' => \SAAS\Http\Middleware\Subscription\RedirectIfNotCancelled::class,
+        'subscription.customer' => \SAAS\Http\Middleware\Subscription\RedirectIfNotCustomer::class,
+        'subscription.inactive' => \SAAS\Http\Middleware\Subscription\RedirectIfNotInactive::class,
+        'subscription.team' => \SAAS\Http\Middleware\Subscription\RedirectIfNoTeamPlan::class,
+        'subscription.owner' => \SAAS\Http\Middleware\Subscription\RedirectIfNotSubscriptionOwner::class,
+        'tenant.config' => \SAAS\Http\Middleware\Tenant\TenantConfigMiddleware::class,
     ];
 }

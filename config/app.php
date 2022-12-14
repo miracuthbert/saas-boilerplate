@@ -154,20 +154,19 @@ return [
         /*
          * Application Service Providers...
          */
-        SAASBoilerplate\App\Providers\AppServiceProvider::class,
-        SAASBoilerplate\App\Providers\AuthServiceProvider::class,
-        // SAASBoilerplate\App\Providers\BroadcastServiceProvider::class,
-        SAASBoilerplate\App\Providers\EventServiceProvider::class,
-        SAASBoilerplate\App\Providers\RouteServiceProvider::class,
-        SAASBoilerplate\App\Providers\HelperServiceProvider::class,
-        SAASBoilerplate\App\Providers\ComposerServiceProvider::class,
-        SAASBoilerplate\App\Providers\RoleServiceProvider::class,
-        SAASBoilerplate\App\Providers\PermissionsServiceProvider::class,
-        SAASBoilerplate\App\Providers\StripeServiceProvider::class,
-        SAASBoilerplate\App\Providers\BladeServiceProvider::class,
-        SAASBoilerplate\App\Providers\TwoFactorServiceProvider::class,
-        SAASBoilerplate\App\Providers\TenantServiceProvider::class,
-        SAASBoilerplate\App\Providers\UrlSchemeServiceProvider::class,
+        SAAS\App\Providers\AppServiceProvider::class,
+        SAAS\App\Providers\AuthServiceProvider::class,
+        // SAAS\App\Providers\BroadcastServiceProvider::class,
+        SAAS\App\Providers\EventServiceProvider::class,
+        SAAS\App\Providers\RouteServiceProvider::class,
+        SAAS\App\Providers\FortifyServiceProvider::class,
+        SAAS\App\Providers\HelperServiceProvider::class,
+        SAAS\App\Providers\ComposerServiceProvider::class,
+        SAAS\App\Providers\StripeServiceProvider::class,
+        SAAS\App\Providers\BladeServiceProvider::class,
+        SAAS\App\Providers\TwoFactorServiceProvider::class,
+        SAAS\App\Providers\TenantServiceProvider::class,
+        SAAS\App\Providers\UrlSchemeServiceProvider::class,
 
     ],
 

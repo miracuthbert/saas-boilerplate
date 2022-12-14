@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Admin\Requests\ImpersonateStartRequest;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Http\Admin\Requests\ImpersonateStartRequest;
+use SAAS\Domain\Users\Models\User;
 
 class UserImpersonateController extends Controller
 {

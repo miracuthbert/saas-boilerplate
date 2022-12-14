@@ -3,18 +3,18 @@
 @section('account.content')
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Two Factor Authentication</h4>
+            <h4 class="card-title">{{ __('Two Factor Authentication') }}</h4>
 
-            @if(auth()->user()->twoFactorEnabled())
+            @if (auth()->user()->twoFactorEnabled())
                 <form method="POST" action="{{ route('account.twofactor.destroy') }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
-                    <p class="form-text">Two factor authentication is enabled for your account.</p>
+                    <p class="form-text">{{ __('Two factor authentication is enabled for your account.') }}</p>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
-                            Disable
+                            {{ __('Disable') }}
                         </button>
                     </div>
                 </form>
@@ -23,13 +23,12 @@
                     {{ csrf_field() }}
 
                     <div class="form-group row{{ $errors->has('token') ? ' has-error' : '' }}">
-                        <label for="token" class="col-md-4 control-label">Verification token</label>
+                        <label for="token" class="col-md-4 control-label">{{ __('Verification token') }}</label>
 
                         <div class="col-md-6">
                             <input id="token" type="text"
-                                   class="form-control{{ $errors->has('token') ? ' is-invalid' : '' }}"
-                                   name="token"
-                                   required autofocus>
+                                class="form-control{{ $errors->has('token') ? ' is-invalid' : '' }}" name="token"
+                                required autofocus>
 
                             @if ($errors->has('token'))
                                 <div class="invalid-feedback">
@@ -42,7 +41,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                Verify
+                                {{ __('Verify') }}
                             </button>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-secondary">
-                                Cancel verification
+                                {{ __('Cancel verification') }}
                             </button>
                         </div>
                     </div>
@@ -65,15 +64,15 @@
                     {{ csrf_field() }}
 
                     <div class="form-group row{{ $errors->has('dial_code') ? ' has-error' : '' }}">
-                        <label for="dial_code" class="col-md-4 control-label">Dial code</label>
+                        <label for="dial_code" class="col-md-4 control-label">{{ __('Dial code') }}</label>
 
                         <div class="col-md-6">
                             <select name="dial_code" id="dial_code"
-                                    class="form-control custom-select{{ $errors->has('dial_code') ? ' is-invalid' : '' }}">
+                                class="form-control custom-select{{ $errors->has('dial_code') ? ' is-invalid' : '' }}">
 
-                                @foreach($countries as $country)
+                                @foreach ($countries as $country)
                                     <option value="{{ $country->dial_code }}"
-                                            {{ old('dial_code') === $country->dial_code ? ' selected' : '' }}>
+                                        {{ old('dial_code') === $country->dial_code ? ' selected' : '' }}>
                                         {{ $country->name }} (+{{ $country->dial_code }})
                                     </option>
                                 @endforeach
@@ -88,13 +87,12 @@
                     </div>
 
                     <div class="form-group row{{ $errors->has('phone_number') ? ' has-error' : '' }}">
-                        <label for="phone_number" class="col-md-4 control-label">Phone number</label>
+                        <label for="phone_number" class="col-md-4 control-label">{{ __('Phone number') }}</label>
 
                         <div class="col-md-6">
                             <input id="phone_number" type="text"
-                                   class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
-                                   name="phone_number"
-                                   required autofocus>
+                                class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
+                                name="phone_number" required autofocus>
 
                             @if ($errors->has('phone_number'))
                                 <div class="invalid-feedback">
@@ -107,7 +105,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                Enable
+                                {{ __('Enable') }}
                             </button>
                         </div>
                     </div>

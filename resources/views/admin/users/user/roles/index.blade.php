@@ -2,10 +2,10 @@
 
 @section('admin.breadcrumb')
     <li class='breadcrumb-item'>
-        <a href="{{ route('admin.users.index') }}">Users</a>
+        <a href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
     </li>
     <li class='breadcrumb-item'>{{ $user->name }}</li>
-    <li class='breadcrumb-item active'>Roles</li>
+    <li class='breadcrumb-item active'>{{ __('Roles') }}</li>
 @endsection
 
 @section('admin.content')
@@ -34,21 +34,23 @@
     </div>
 
     @if($roles->count())
+        <p class="h3">{{ __('Roles') }}</p>
+
         @foreach($roles as $role)
             <div class="clearfix">
                 <div class="card mb-2">
                     <div class="card-body">
                         <h4 class="card-title">{{ $role->name }}</h4>
-                        @if($role->roleable->expires_at)
+                        @if($role->pivot->expires_at)
                             <p>
-                                {{ $role->roleable->expires_at->toDayDateTimeString() }}
+                                {{ $role->pivot->expires_at->toDayDateTimeString() }}
                             </p>
 
-                            @if($role->roleable->isActive())
+                            @if($role->pivot->isActive())
                                 <ul class="list-inline my-1">
                                     <li class="list-inline-item">
                                 <span class="badge badge-success">
-                                    Active / Valid | Expires {{ $role->roleable->expires_at->diffForHumans() }}
+                                    Active / Valid | Expires {{ $role->pivot->expires_at->diffForHumans() }}
                                 </span>
                                     </li>
 
@@ -56,14 +58,14 @@
                                         <a href="{{ route('admin.users.roles.destroy', [$user, $role]) }}"
                                            class="btn btn-outline-primary"
                                            data-toggle="modal"
-                                           data-target="#revoke-user-role-modal-{{ $role->roleable->id }}">
+                                           data-target="#revoke-user-role-modal-{{ $role->pivot->id }}">
                                             Revoke / remove role
                                         </a>
 
                                         @include('layouts.admin.partials.modals._confirm_modal', [
-                                            'modalId' => "revoke-user-role-modal-{$role->roleable->id}",
+                                            'modalId' => "revoke-user-role-modal-{$role->pivot->id}",
                                             'title' => "Revoke role confirmation",
-                                            'action' => "revoke-user-role-form-{$role->roleable->id}",
+                                            'action' => "revoke-user-role-form-{$role->pivot->id}",
                                             'message' => "Do you want to revoke: {$role->name} role from {$user->name}?",
                                             'type' => "danger"
                                         ])
@@ -71,7 +73,7 @@
                                         <form action="{{ route('admin.users.roles.destroy', [$user, $role]) }}"
                                               method="post"
                                               style="display: none;"
-                                              id="revoke-user-role-form-{{ $role->roleable->id }}">
+                                              id="revoke-user-role-form-{{ $role->pivot->id }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
@@ -80,7 +82,7 @@
                             @else
                                 <p>
                                 <span class="badge badge-danger">
-                                    Expired {{ $role->roleable->expires_at->diffForHumans() }}
+                                    Expired {{ $role->pivot->expires_at->diffForHumans() }}
                                 </span>
                                 </p>
                             @endif
@@ -89,7 +91,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
 
-                                @include('admin.users.partials.forms._datetimepicker', ['id' => '_'.$role->roleable->id])
+                                @include('admin.users.partials.forms._datetimepicker', ['id' => '_'.$role->pivot->id])
 
                                 <div class="form-group row">
                                     <div class="col-sm-4 offset-sm-4">
@@ -109,6 +111,6 @@
     @endif
 @endsection
 
-@section('scripts')
+@push('scripts')
     @include('admin.partials.forms.scripts._script_datetimepicker')
-@endsection
+@endpush

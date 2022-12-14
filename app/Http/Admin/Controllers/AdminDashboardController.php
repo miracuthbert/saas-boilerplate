@@ -1,9 +1,9 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers;
+namespace SAAS\Http\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class AdminDashboardController extends Controller
 {

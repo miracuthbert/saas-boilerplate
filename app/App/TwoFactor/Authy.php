@@ -6,11 +6,11 @@
  * Time: 3:05 PM
  */
 
-namespace SAASBoilerplate\App\TwoFactor;
+namespace SAAS\App\TwoFactor;
 
 use Exception;
 use GuzzleHttp\Client;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\User;
 
 class Authy implements TwoFactor
 {

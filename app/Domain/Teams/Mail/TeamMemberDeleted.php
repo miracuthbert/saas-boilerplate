@@ -1,13 +1,13 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Teams\Mail;
+namespace SAAS\Domain\Teams\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use SAASBoilerplate\Domain\Teams\Models\Team;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Teams\Models\Team;
+use SAAS\Domain\Users\Models\User;
 
 class TeamMemberDeleted extends Mailable
 {

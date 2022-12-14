@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Auth\Events\UserRequestedActivationEmail;
-use SAASBoilerplate\Domain\Auth\Requests\ActivateResendRequest;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Auth\Events\UserRequestedActivationEmail;
+use SAAS\Http\Auth\Requests\ActivateResendRequest;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
 
 class ActivationResendController extends Controller

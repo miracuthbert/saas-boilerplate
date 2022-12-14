@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Tenant;
+namespace SAAS\Http\Tenant;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Company\Events\CompanyUserLogin;
-use SAASBoilerplate\Domain\Company\Models\Company;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Company\Events\CompanyUserLogin;
+use SAAS\Domain\Company\Models\Company;
 
 class TenantSwitchController extends Controller
 {

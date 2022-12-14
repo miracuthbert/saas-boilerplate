@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Users\Models;
+namespace SAAS\Domain\Users\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

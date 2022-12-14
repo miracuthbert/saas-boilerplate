@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Webhook\Controllers;
+namespace SAAS\Http\Webhook\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Cashier\Http\Controllers\WebhookController;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class StripeWebhookController extends WebhookController
 {

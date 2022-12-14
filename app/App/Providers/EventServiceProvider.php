@@ -1,14 +1,16 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
+use SAAS\Domain\Auth\Events\UserSignedUp;
+use SAAS\Domain\Auth\Listeners\CreateDefaultTeam;
+use SAAS\Domain\Auth\Listeners\SendActivationEmail;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use SAAS\Domain\Auth\Events\UserRequestedActivationEmail;
+use SAAS\Domain\Company\Listeners\CompanyUserEventSubscriber;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use SAASBoilerplate\Domain\Auth\Events\UserRequestedActivationEmail;
-use SAASBoilerplate\Domain\Auth\Events\UserSignedUp;
-use SAASBoilerplate\Domain\Auth\Listeners\CreateDefaultTeam;
-use SAASBoilerplate\Domain\Auth\Listeners\SendActivationEmail;
-use SAASBoilerplate\Domain\Company\Listeners\CompanyUserEventSubscriber;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,12 +20,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        UserSignedUp::class => [
+        Registered::class => [
+            SendEmailVerificationNotification::class,
             CreateDefaultTeam::class,
-            SendActivationEmail::class,
-        ],
-        UserRequestedActivationEmail::class => [
-            SendActivationEmail::class,
         ],
     ];
 

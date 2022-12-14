@@ -6,10 +6,10 @@
  * Time: 2:38 AM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Auth;
+namespace SAAS\App\Traits\Eloquent\Auth;
 
 
-use SAASBoilerplate\Domain\Users\Models\ConfirmationToken;
+use SAAS\Domain\Users\Models\ConfirmationToken;
 
 trait HasConfirmationToken
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use SAASBoilerplate\App\Tenant\Manager;
-use SAASBoilerplate\App\Tenant\Observers\TenantObserver;
+use SAAS\App\Tenant\Manager;
+use SAAS\App\Tenant\Observers\TenantObserver;
 
 class TenantServiceProvider extends ServiceProvider
 {

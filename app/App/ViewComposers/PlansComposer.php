@@ -6,10 +6,10 @@
  * Time: 11:51 AM
  */
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
 use Illuminate\View\View;
-use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
+use SAAS\Domain\Subscriptions\Models\Plan;
 
 class PlansComposer
 {

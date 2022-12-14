@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware\Subscription;
+namespace SAAS\Http\Middleware\Subscription;
 
 use Closure;
 
@@ -15,7 +15,7 @@ class RedirectIfNotInactive
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->hasSubscription()) {
+        if (auth()->check() && $request->user()->hasSubscription()) {
             return redirect()->route('account.dashboard');
         }
 

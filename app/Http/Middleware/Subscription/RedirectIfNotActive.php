@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware\Subscription;
+namespace SAAS\Http\Middleware\Subscription;
 
 use Closure;
 
@@ -15,7 +15,7 @@ class RedirectIfNotActive
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->check() || auth()->user()->doesNotHaveSubscription()) {
+        if (auth()->check() && auth()->user()->doesNotHaveSubscription()) {
             return redirect()->route('account.index')
                 ->withSuccess('You need to be subscribed to access this feature.');
         }

@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Api\Controllers\Account;
+namespace SAAS\Http\Api\Controllers\Account;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Requests\DeactivateAccountRequest;
+use SAAS\App\Controllers\Controller;
+use SAAS\Http\Account\Requests\DeactivateAccountRequest;
 
 class DeactivateController extends Controller
 {

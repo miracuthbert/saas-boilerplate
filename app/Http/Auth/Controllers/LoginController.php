@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class LoginController extends Controller
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Auth\Events\UserSignedUp;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Auth\Events\UserSignedUp;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,7 +63,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return \SAASBoilerplate\Domain\Users\Models\User
+     * @return \SAAS\Domain\Users\Models\User
      */
     protected function create(array $data)
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers\Company;
+namespace SAAS\Http\Account\Controllers\Company;
 
-use SAASBoilerplate\Domain\Company\Models\Company;
+use SAAS\Domain\Company\Models\Company;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class CompanyController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\App\Console\Commands\Role;
+namespace SAAS\App\Console\Commands\Role;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\User;
 
 class AssignUserRoleCommand extends Command
 {

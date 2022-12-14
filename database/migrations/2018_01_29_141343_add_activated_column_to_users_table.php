@@ -14,7 +14,7 @@ class AddActivatedColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('activated')->default(false)->after('password');
+            $table->timestamp('email_verified_at')->nullable()->after('password');
         });
     }
 

@@ -6,9 +6,9 @@
  * Time: 7:45 PM
  */
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
-use SAASBoilerplate\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\Role;
 use Illuminate\View\View;
 
 class RolesComposer

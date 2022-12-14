@@ -1,9 +1,9 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers;
+namespace SAAS\Http\Account\Controllers;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class DashboardController extends Controller
 {

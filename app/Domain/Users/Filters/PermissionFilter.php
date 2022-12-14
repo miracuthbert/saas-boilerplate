@@ -6,10 +6,10 @@
  * Time: 1:49 PM
  */
 
-namespace SAASBoilerplate\Domain\Users\Filters;
+namespace SAAS\Domain\Users\Filters;
 
 
-use SAASBoilerplate\App\Filters\FilterAbstract;
+use Miracuthbert\Filters\FilterAbstract;
 use Illuminate\Database\Eloquent\Builder;
 
 class PermissionFilter extends FilterAbstract
@@ -30,7 +30,7 @@ class PermissionFilter extends FilterAbstract
         }
 
         return $builder->whereHas('permissions', function (Builder $builder) use ($value) {
-            return $builder->where('permission_id', $value);
+            return $builder->where('slug', $value);
         });
     }
 }

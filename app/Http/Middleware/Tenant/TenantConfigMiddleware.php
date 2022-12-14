@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Http\Middleware\Tenant;
+namespace SAAS\Http\Middleware\Tenant;
 
 use Closure;
 

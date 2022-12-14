@@ -1,14 +1,13 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Models\User;
-use SAASBoilerplate\Domain\Users\Policies\RolePolicy;
-use SAASBoilerplate\Domain\Users\Policies\UserPolicy;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\User;
+use SAAS\Http\Users\Policies\RolePolicy;
+use SAAS\Http\Users\Policies\UserPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +30,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes();
+        //
     }
 }

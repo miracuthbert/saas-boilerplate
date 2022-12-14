@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => SAASBoilerplate\Domain\Users\Models\User::class,
+        'model' => SAAS\Domain\Users\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Company\Listeners;
+namespace SAAS\Domain\Company\Listeners;
 
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use SAASBoilerplate\Domain\Company\Events\CompanyUserLogin;
+use SAAS\Domain\Company\Events\CompanyUserLogin;
 
 class CompanyUserEventSubscriber
 {

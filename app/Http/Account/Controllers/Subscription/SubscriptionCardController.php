@@ -1,11 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers\Subscription;
+namespace SAAS\Http\Account\Controllers\Subscription;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Mail\Subscription\CardUpdated;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Account\Mail\Subscription\CardUpdated;
 
 class SubscriptionCardController extends Controller
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
-use SAASBoilerplate\Domain\Users\Models\Permission;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use Illuminate\Validation\Rule;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Users\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -27,7 +28,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.users.permissions.create');
+        return view('admin.users.permissions.create', [
+            'types' => config('laravel-roles.permitables'),
+        ]);
     }
 
     /**
@@ -38,7 +41,22 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        Permission::create($request->only(['name', 'usable']));
+        $this->validate($request, [
+            'name' => [
+                'required', 'string', 'max:60',
+                Rule::unique('permissions', 'name'),
+            ],
+            'type' => [
+                'required',
+                'string',
+                'in:'. implode(",", array_keys(config('laravel-roles.permitables')))
+            ],
+            'usable' => ['nullable', 'boolean'],
+        ], [
+            'name.unique' => __('Permission with :attribute already exists.')
+        ]);
+
+        Permission::create($request->only(['name', 'usable', 'type']));
 
         return redirect()
             ->route('admin.permissions.index')
@@ -48,7 +66,7 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
+     * @param  \SAAS\Domain\Users\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function show(Permission $permission)
@@ -59,7 +77,7 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
+     * @param  \SAAS\Domain\Users\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function edit(Permission $permission)
@@ -71,7 +89,7 @@ class PermissionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission  $permission
+     * @param  \SAAS\Domain\Users\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Permission $permission)
@@ -86,7 +104,7 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SAASBoilerplate\Domain\Users\Models\Permission $permission
+     * @param  \SAAS\Domain\Users\Models\Permission $permission
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

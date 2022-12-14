@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Account\Rules;
+namespace SAAS\Domain\Account\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use SAASBoilerplate\App\TwoFactor\TwoFactor;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\TwoFactor\TwoFactor;
+use SAAS\Domain\Users\Models\User;
 
 class ValidTwoFactorRule implements Rule
 {

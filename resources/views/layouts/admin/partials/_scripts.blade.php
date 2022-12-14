@@ -48,8 +48,48 @@
         }
     };
 
-    tinymce.init(editor_config);
+    if (typeof tinymce !== 'undefined') {
+	    tinymce.init(editor_config);
+    }
+</script>
+
+<!-- Checkbox Selector -->
+<script>
+    $('.checkbox-selector').each(function() {
+        const checkboxSelector = $(this)
+        const uniqueKey = checkboxSelector.data('key')
+        const perms = $(`.${uniqueKey}-item`)
+
+        const updateChecked = function () {
+            const checked = $(`.${uniqueKey}-item:checked`).length
+
+            if (checked === 0) {
+                checkboxSelector.prop('checked', false)
+                checkboxSelector.prop('indeterminate', false)
+            } else if (perms.length > checked) {
+                checkboxSelector.prop('checked', false)
+                checkboxSelector.prop('indeterminate', true)
+            } else {
+                checkboxSelector.prop('indeterminate', false)
+                checkboxSelector.prop('checked', true)
+            }
+        }
+
+        checkboxSelector.change(function() {
+            if ($(this).prop('checked')) {
+                $(`.${uniqueKey}-item`).prop('checked', true)
+            } else {
+                $(`.${uniqueKey}-item`).prop('checked', false)
+            }
+        })
+
+        $(`.${uniqueKey}-item`).change(function() {
+            updateChecked()
+        })
+
+        updateChecked()
+    })
 </script>
 
 <!-- Custom Scripts -->
-@yield('scripts')
+@stack('scripts')

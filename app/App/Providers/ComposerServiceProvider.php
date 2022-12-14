@@ -1,15 +1,15 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use SAASBoilerplate\App\ViewComposers\CountriesComposer;
-use SAASBoilerplate\App\ViewComposers\PermissionsComposer;
-use SAASBoilerplate\App\ViewComposers\PlansComposer;
-use SAASBoilerplate\App\ViewComposers\RolesComposer;
-use SAASBoilerplate\App\ViewComposers\UserCompaniesComposer;
-use SAASBoilerplate\App\ViewComposers\UserFiltersComposer;
+use SAAS\App\ViewComposers\CountriesComposer;
+use SAAS\App\ViewComposers\PermissionsComposer;
+use SAAS\App\ViewComposers\PlansComposer;
+use SAAS\App\ViewComposers\RolesComposer;
+use SAAS\App\ViewComposers\UserCompaniesComposer;
+use SAAS\App\ViewComposers\UserFiltersComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -47,7 +47,8 @@ class ComposerServiceProvider extends ServiceProvider
         //roles list
         View::composer([
             'admin.users.roles.partials.forms._roles',
-            'admin.users.user.roles.index'
+            'admin.users.user.roles.index',
+            'admin.users.create',
         ], RolesComposer::class);
 
         //permissions list

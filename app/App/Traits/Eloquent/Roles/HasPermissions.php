@@ -6,10 +6,10 @@
  * Time: 10:14 PM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent\Roles;
+namespace SAAS\App\Traits\Eloquent\Roles;
 
 
-use SAASBoilerplate\Domain\Users\Models\Permission;
+use SAAS\Domain\Users\Models\Permission;
 
 trait HasPermissions
 {

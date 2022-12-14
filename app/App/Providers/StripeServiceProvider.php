@@ -1,10 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Cashier\Cashier;
 use Stripe\Stripe;
+use Laravel\Cashier\Cashier;
+use SAAS\Domain\Users\Models\User;
 
 class StripeServiceProvider extends ServiceProvider
 {
@@ -15,9 +16,8 @@ class StripeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Cashier::useCustomerModel(User::class);
         Stripe::setApiKey(config('services.stripe.secret'));
-
-        Cashier::useCurrency(config('settings.cashier.currency'), config('settings.cashier.symbol'));
     }
 
     /**

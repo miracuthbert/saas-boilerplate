@@ -1,12 +1,12 @@
 <?php
 
-namespace SAASBoilerplate\Http\Api\Controllers\Account;
+namespace SAAS\Http\Api\Controllers\Account;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Account\Mail\PasswordUpdated;
-use SAASBoilerplate\Domain\Account\Requests\PasswordStoreRequest;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Account\Mail\PasswordUpdated;
+use SAAS\Http\Account\Requests\PasswordStoreRequest;
 
 class PasswordController extends Controller
 {

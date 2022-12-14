@@ -6,7 +6,7 @@
  * Time: 12:18 PM
  */
 
-namespace SAASBoilerplate\App\Traits\Eloquent;
+namespace SAAS\App\Traits\Eloquent;
 
 
 trait NestableCommentsTrait

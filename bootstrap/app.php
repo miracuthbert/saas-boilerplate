@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    SAASBoilerplate\Http\Kernel::class
+    SAAS\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    SAASBoilerplate\App\Console\Kernel::class
+    SAAS\App\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    SAASBoilerplate\App\Exceptions\Handler::class
+    SAAS\App\Exceptions\Handler::class
 );
 
 /*

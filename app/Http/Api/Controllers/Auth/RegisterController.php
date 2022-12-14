@@ -1,12 +1,12 @@
 <?php
 
-namespace SAASBoilerplate\Http\Api\Controllers\Auth;
+namespace SAAS\Http\Api\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
-use SAASBoilerplate\Domain\Auth\Events\UserSignedUp;
-use SAASBoilerplate\Domain\Auth\Requests\UserSignUpRequest;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\App\Controllers\Controller;
+use SAAS\Domain\Auth\Events\UserSignedUp;
+use SAAS\Http\Auth\Requests\UserSignUpRequest;
+use SAAS\Domain\Users\Models\User;
 
 class RegisterController extends Controller
 {

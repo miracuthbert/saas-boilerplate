@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Auth\Listeners;
+namespace SAAS\Domain\Auth\Listeners;
 
-use SAASBoilerplate\Domain\Auth\Mail\ActivationEmail;
+use SAAS\Domain\Auth\Mail\ActivationEmail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;

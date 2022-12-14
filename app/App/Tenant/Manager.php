@@ -6,7 +6,7 @@
  * Time: 12:04 AM
  */
 
-namespace SAASBoilerplate\App\Tenant;
+namespace SAAS\App\Tenant;
 
 class Manager
 {

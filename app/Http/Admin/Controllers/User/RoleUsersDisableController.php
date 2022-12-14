@@ -1,12 +1,12 @@
 <?php
 
-namespace SAASBoilerplate\Http\Admin\Controllers\User;
+namespace SAAS\Http\Admin\Controllers\User;
 
 use Carbon\Carbon;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class RoleUsersDisableController extends Controller
 {
@@ -14,7 +14,7 @@ class RoleUsersDisableController extends Controller
      * Revoke role users access in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SAASBoilerplate\Domain\Users\Models\Role $role
+     * @param  \SAAS\Domain\Users\Models\Role $role
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -25,6 +25,7 @@ class RoleUsersDisableController extends Controller
         $users = $role->users()
             ->whereNull('expires_at')
             ->orWhereDate('expires_at', '>', Carbon::now())
+            ->orWhere('user_id', '!=', $request->user()->id)
             ->get();
 
         $users->each(function ($user, $key) use ($role) {

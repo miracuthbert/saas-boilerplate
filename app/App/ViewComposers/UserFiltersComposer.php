@@ -6,9 +6,9 @@
  * Time: 12:44 PM
  */
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
-use SAASBoilerplate\Domain\Users\Filters\UserFilters;
+use SAAS\Domain\Users\Filters\UserFilters;
 use Illuminate\View\View;
 
 class UserFiltersComposer

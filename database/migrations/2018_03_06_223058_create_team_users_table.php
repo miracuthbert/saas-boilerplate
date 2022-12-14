@@ -14,12 +14,12 @@ class CreateTeamUsersTable extends Migration
     public function up()
     {
         Schema::create('team_users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('team_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
+            $table->id();
+            $table->bigInteger('team_id')->unsigned()->index();
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('team');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

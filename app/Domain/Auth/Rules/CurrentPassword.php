@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Auth\Rules;
+namespace SAAS\Domain\Auth\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Hash;

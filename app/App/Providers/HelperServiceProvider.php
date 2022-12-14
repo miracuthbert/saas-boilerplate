@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;

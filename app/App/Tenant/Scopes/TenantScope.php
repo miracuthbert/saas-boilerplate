@@ -6,7 +6,7 @@
  * Time: 7:04 PM
  */
 
-namespace SAASBoilerplate\App\Tenant\Scopes;
+namespace SAAS\App\Tenant\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

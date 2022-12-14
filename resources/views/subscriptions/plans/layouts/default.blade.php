@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex d-flex-wrap justify-content-center mb-3">
-            <h1>{{ $plansTitle or '' }}</h1>
+            <h1>@yield('plansTitle', 'Plans')</h1>
         </div><!-- /.d-flex -->
 
         @foreach($plans->chunk(3) as $plansRow)
@@ -17,14 +17,14 @@
                         </h2>
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ $plan->name }}</h5>
+                            <h5 class="card-title mb-3">{{ $plan->name }}</h5>
 
                             <a class="btn btn-link" href="{{ route('plans.show', $plan) }}">
-                                Details
+                                {{ __('Details') }}
                             </a>
 
                             <a class="btn btn-primary" href="{{ route('subscription.index', ['plan' => $plan]) }}">
-                                Subscribe
+                                {{ __('Subscribe') }}
                             </a>
                         </div><!-- /.card-body -->
 
@@ -32,7 +32,7 @@
                             <div class="list-group list-group-flush">
                                 <div class="list-group-item flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Team Limit</h5>
+                                        <h5 class="mb-1">{{ __('Team Limit') }}</h5>
                                         <span>{{ $plan->teams_limit }}</span>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
         @endforeach
 
         <div class="d-flex d-flex-wrap justify-content-center">
-            {{ $links or '' }}
+            @yield('links', '')
         </div><!-- /.d-flex -->
     </div>
 @endsection

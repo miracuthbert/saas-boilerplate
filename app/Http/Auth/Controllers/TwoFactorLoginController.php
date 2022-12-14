@@ -1,12 +1,12 @@
 <?php
 
-namespace SAASBoilerplate\Http\Auth\Controllers;
+namespace SAAS\Http\Auth\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use SAASBoilerplate\Domain\Account\Requests\TwoFactor\TwoFactorVerifyRequest;
-use SAASBoilerplate\Domain\Users\Models\User;
+use SAAS\Http\Account\Requests\TwoFactor\TwoFactorVerifyRequest;
+use SAAS\Domain\Users\Models\User;
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class TwoFactorLoginController extends Controller
 {

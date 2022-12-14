@@ -1,12 +1,12 @@
 @component('subscriptions.plans.layouts.default', compact('plans'))
 
-    @slot('plansTitle')
-        User plans
-    @endslot
+    @section('plansTitle')
+        {{ __('User Plans') }}
+    @endsection
 
-    @slot('links')
+    @section('links')
         <!-- Team plans link -->
-        <a href="{{ route('plans.teams.index') }}" class="btn btn-secondary btn-lg">Team plans</a>
-    @endslot
+        <a href="{{ route('plans.teams.index') }}" class="btn btn-outline-primary btn-lg">{{ __('Team plans') }}</a>
+    @endsection
 
 @endcomponent

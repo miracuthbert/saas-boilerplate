@@ -6,10 +6,10 @@
  * Time: 3:33 PM
  */
 
-namespace SAASBoilerplate\App\Filters\Deletion;
+namespace Miracuthbert\Filters\Deletion;
 
 
-use SAASBoilerplate\App\Filters\FilterAbstract;
+use Miracuthbert\Filters\FilterAbstract;
 use Illuminate\Database\Eloquent\Builder;
 
 class DeletionFilter extends FilterAbstract

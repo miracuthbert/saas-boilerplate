@@ -1,6 +1,6 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Auth\Listeners;
+namespace SAAS\Domain\Auth\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

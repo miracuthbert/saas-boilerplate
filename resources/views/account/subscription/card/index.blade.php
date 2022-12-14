@@ -20,7 +20,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
         let handler = StripeCheckout.configure({
@@ -53,4 +53,4 @@
             e.preventDefault();
         })
     </script>
-@endsection
+@endpush

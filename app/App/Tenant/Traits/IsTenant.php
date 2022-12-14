@@ -6,7 +6,7 @@
  * Time: 6:25 PM
  */
 
-namespace SAASBoilerplate\App\Tenant\Traits;
+namespace SAAS\App\Tenant\Traits;
 
 use Ramsey\Uuid\Uuid;
 

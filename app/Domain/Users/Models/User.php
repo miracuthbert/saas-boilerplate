@@ -1,35 +1,35 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Users\Models;
+namespace SAAS\Domain\Users\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
 use Laravel\Passport\HasApiTokens;
-use SAASBoilerplate\App\Traits\Eloquent\Auth\HasConfirmationToken;
-use SAASBoilerplate\App\Traits\Eloquent\Auth\HasTwoFactorAuthentication;
-use SAASBoilerplate\App\Traits\Eloquent\Roles\HasPermissions;
-use SAASBoilerplate\App\Traits\Eloquent\Roles\HasRoles;
-use SAASBoilerplate\App\Traits\Eloquent\Subscriptions\HasSubscriptions;
-use SAASBoilerplate\Domain\Company\Models\Company;
-use SAASBoilerplate\Domain\Subscriptions\Models\Plan;
-use SAASBoilerplate\Domain\Teams\Models\Team;
-use SAASBoilerplate\Domain\Users\Filters\UserFilters;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use SAAS\Domain\Teams\Models\Team;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use SAAS\Domain\Company\Models\Company;
+use SAAS\Domain\Subscriptions\Models\Plan;
+use SAAS\Domain\Users\Filters\UserFilters;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Miracuthbert\LaravelRoles\Models\Traits\LaravelRolesUserTrait;
+use SAAS\App\Traits\Eloquent\Auth\HasConfirmationToken;
+use SAAS\App\Traits\Eloquent\Subscriptions\HasSubscriptions;
+use SAAS\App\Traits\Eloquent\Auth\HasTwoFactorAuthentication;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable,
-        HasConfirmationToken,
-        HasRoles,
-        HasPermissions,
+        LaravelRolesUserTrait,
         Billable,
         HasSubscriptions,
         SoftDeletes,
         HasTwoFactorAuthentication,
-        HasApiTokens;
+        HasApiTokens,
+        HasFactory;
 
     /**
      * The attributes that should be appended to the model.
@@ -52,7 +52,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'activated'
+        'email_verified_at',
     ];
 
     /**
@@ -140,16 +140,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get team owned by user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function team()
-    {
-        return $this->hasOne(Team::class);
-    }
-
-    /**
      * Get plan that the user is currently on.
      *
      * @return mixed
@@ -169,6 +159,11 @@ class User extends Authenticatable
         return $this->plan();
     }
 
+    public function team()
+    {
+        return $this->hasOne(Team::class);
+    }
+
     /**
      * Get plans owned by the user.
      *
@@ -182,7 +177,7 @@ class User extends Authenticatable
             'user_id',
             'gateway_id',
             'id',
-            'stripe_plan'
+            'stripe_price'
         )->orderBy('subscriptions.created_at', 'desc');
     }
 
@@ -193,7 +188,20 @@ class User extends Authenticatable
      */
     public function teams()
     {
-        return $this->belongsToMany(Team::class, 'team_users');
+        return $this->belongsToMany(Team::class, 'team_user')->withTimestamps();
+    }
+
+    /**
+     * Get roles assigned to the entity.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles')
+            ->using(UserRole::class)
+            ->withTimestamps()
+            ->withPivot(['expires_at']);
     }
 
     /**

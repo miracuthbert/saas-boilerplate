@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\App\Console\Commands\Role;
+namespace SAAS\App\Console\Commands\Role;
 
 use Illuminate\Console\Command;
-use SAASBoilerplate\Domain\Users\Models\Permission;
-use SAASBoilerplate\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Models\Permission;
+use SAAS\Domain\Users\Models\Role;
 
 class CreatePermissionCommand extends Command
 {

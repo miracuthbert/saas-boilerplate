@@ -1,9 +1,9 @@
 <?php
 
-namespace SAASBoilerplate\Http\Home\Controllers;
+namespace SAAS\Http\Home\Controllers;
 
 use Illuminate\Http\Request;
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 
 class HomeController extends Controller
 {

@@ -6,13 +6,13 @@
  * Time: 4:40 PM
  */
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
 use Illuminate\View\View;
 
 class UserCompaniesComposer
 {
-    private $companies;
+    private $teams;
 
     /**
      * Share list of roles.
@@ -21,11 +21,17 @@ class UserCompaniesComposer
      */
     public function compose(View $view)
     {
-        if (!$this->companies) {
-            $this->companies = auth()->check() ? auth()->user()->companies : collect([]);
+        if (!$this->teams) {
+            $this->teams = auth()->check() ? auth()->user()->teams : collect([]);
+            
+            if ($this->teams->count() > 0) {
+                $this->teams->load([
+                    'owner'
+                ]);
+            }
         }
 
-        $view->with('user_companies', $this->companies);
+        $view->with('teams', $this->teams);
     }
 
 }

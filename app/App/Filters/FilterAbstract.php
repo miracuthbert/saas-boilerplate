@@ -6,7 +6,7 @@
  * Time: 9:24 PM
  */
 
-namespace SAASBoilerplate\App\Filters;
+namespace Miracuthbert\Filters;
 
 
 use Illuminate\Database\Eloquent\Builder;

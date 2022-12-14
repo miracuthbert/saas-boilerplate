@@ -17,7 +17,7 @@
                                 {{ $company->name }}
 
                                 <aside>
-                                    <a href="{{ route('tenant.dashboard', $company) }}">View</a>
+                                    <a href="{{ route('tenant.switch', $company) }}">View</a>
                                     {{--<a href="#">--}}
                                         {{--Projects--}}
                                         {{--<span class="badge badge-primary badge-pill">10</span>--}}

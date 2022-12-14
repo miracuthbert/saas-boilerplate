@@ -1,8 +1,8 @@
 <?php
 
-namespace SAASBoilerplate\Http\Account\Controllers;
+namespace SAAS\Http\Account\Controllers;
 
-use SAASBoilerplate\App\Controllers\Controller;
+use SAAS\App\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller

@@ -6,9 +6,9 @@
  * Time: 2:29 PM
  */
 
-namespace SAASBoilerplate\App\ViewComposers;
+namespace SAAS\App\ViewComposers;
 
-use SAASBoilerplate\Domain\Users\Models\Permission;
+use SAAS\Domain\Users\Models\Permission;
 use Illuminate\View\View;
 
 class PermissionsComposer

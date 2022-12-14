@@ -1,10 +1,11 @@
 <?php
 
-namespace SAASBoilerplate\App\Providers;
+namespace SAAS\App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-use SAASBoilerplate\Domain\Users\Models\Role;
-use SAASBoilerplate\Domain\Users\Observers\RoleObserver;
+use SAAS\Domain\Users\Models\Role;
+use SAAS\Domain\Users\Observers\RoleObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,10 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //model observers
-//        Category::observe(CategoryObserver::class);
-//        Tag::observe(TagObserver::class);
-        Role::observe(RoleObserver::class);
+        Paginator::useBootstrapFour();
+
+        // model observers
+        // Category::observe(CategoryObserver::class);
+        // Tag::observe(TagObserver::class);
     }
 
     /**

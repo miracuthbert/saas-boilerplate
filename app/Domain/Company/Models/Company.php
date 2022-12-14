@@ -1,10 +1,10 @@
 <?php
 
-namespace SAASBoilerplate\Domain\Company\Models;
+namespace SAAS\Domain\Company\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use SAASBoilerplate\App\Tenant\Traits\IsTenant;
-use SAASBoilerplate\Domain\Project\Models\Project;
+use SAAS\App\Tenant\Traits\IsTenant;
+use SAAS\Domain\Project\Models\Project;
 
 class Company extends Model
 {
