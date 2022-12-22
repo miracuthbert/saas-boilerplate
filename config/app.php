@@ -165,7 +165,6 @@ return [
         SAAS\App\Providers\StripeServiceProvider::class,
         SAAS\App\Providers\BladeServiceProvider::class,
         SAAS\App\Providers\TwoFactorServiceProvider::class,
-        SAAS\App\Providers\TenantServiceProvider::class,
         SAAS\App\Providers\UrlSchemeServiceProvider::class,
 
     ],

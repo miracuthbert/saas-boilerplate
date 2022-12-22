@@ -36,6 +36,13 @@ return [
 
         /*
          *
+         * The column to query against in the tenant model when using "DB" store.
+         *
+         */
+        'db_key' => 'id',
+
+        /*
+         *
          * The route key used by the model.
          *
          * Used to fetch the tenant's unique identifier directly from the request.
@@ -197,7 +204,17 @@ return [
              *
              */
             'tenant' => [
-                // 'tenant.config',
+                
+            ],
+
+            /*
+             *
+             * The middleware to apply after the tenant middleware group.
+             *
+             */
+            'after' => [
+                'tenant.config'
+                // theme_config
             ],
         ],
 

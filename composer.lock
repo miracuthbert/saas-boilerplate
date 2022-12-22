@@ -3313,16 +3313,16 @@
         },
         {
             "name": "miracuthbert/laravel-multi-tenancy",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/miracuthbert/laravel-multi-tenancy.git",
-                "reference": "493c1c2e49a763c599a4a8a00e5ecfe6ecfdc0bb"
+                "reference": "653fbc8a36d89dde7ef98c63f0415520d14ae2e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/miracuthbert/laravel-multi-tenancy/zipball/493c1c2e49a763c599a4a8a00e5ecfe6ecfdc0bb",
-                "reference": "493c1c2e49a763c599a4a8a00e5ecfe6ecfdc0bb",
+                "url": "https://api.github.com/repos/miracuthbert/laravel-multi-tenancy/zipball/653fbc8a36d89dde7ef98c63f0415520d14ae2e1",
+                "reference": "653fbc8a36d89dde7ef98c63f0415520d14ae2e1",
                 "shasum": ""
             },
             "require": {
@@ -3377,9 +3377,9 @@
             ],
             "support": {
                 "issues": "https://github.com/miracuthbert/laravel-multi-tenancy/issues",
-                "source": "https://github.com/miracuthbert/laravel-multi-tenancy/tree/1.2.0"
+                "source": "https://github.com/miracuthbert/laravel-multi-tenancy/tree/1.3.0"
             },
-            "time": "2022-01-21T22:05:46+00:00"
+            "time": "2022-12-16T22:38:21+00:00"
         },
         {
             "name": "miracuthbert/laravel-roles",
