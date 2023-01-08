@@ -5,6 +5,50 @@ Built to provide developers with a template to kickoff their SaaS application,
 without the hustle for repetitive tasks such as user account setup, subscriptions
 and role management.
 
+## folder structure
+
+Inspired by domain-driven approach.
+
+Laravel's main `app` folder is restructured to: `App`, `Domain` and `Http`.
+
+### outline of app folder
+
+- App
+  - Console
+  - Controllers
+  - Exceptions
+  - Providers
+  - Traits
+  - TwoFactor
+  - ViewComposers
+- Domain
+  - Account
+  - Auth
+    - Events
+    - Listeners
+    - Mail
+    - Rules
+  - Projects
+  - Subscriptions
+  - Teams
+  - Users
+    - Models
+    - Filters
+    - Observers
+- Http
+  - Account
+    - Controllers
+    - Requests
+  - Auth
+    - Controllers
+    - Requests
+  - Middleware
+  - Subscriptions
+  - Teams
+  - Users
+    - Policies
+    - Resources
+
 ## features
 
 - Authentication
@@ -41,7 +85,7 @@ and role management.
 since they are under development or do not qualify as a standard / main SaaS feature.
 Some common features will not be listed as well.*
 
-## installation
+## Installation
 
 1. Fork, clone or download this repository.
 2. Run `composer install` if its the initial setup or `composer update`.
@@ -50,18 +94,70 @@ Some common features will not be listed as well.*
 4. Run `php artisan migrate` for initial tables setup.
 5. __Optional:__ Run `php artisan db:seed --class=RoleTableSeeder` to set the initial
     roles and permissions, then follow `step 7` below to assign a user the initial permissions and roles.
-6. __Optional:__ To create a `super / root` admin;
+6. __Optional:__ To create a `root` admin;
     Run `php artisan role:assign youremail@example.org admin-root`.
     Substitute `youremail@example.org` with an existing user email. `admin-root` is the __default root Admin role__.
 
     __Note:__ You must follow `step 5` above first to setup the root admin.
 
-## usage
+## Usage
+
+### Generating different files in app folder
+
+#### Channel Make Command
+
+php artisan make:channel \SAAS\App\Broadcasting\{name}
+
+#### Console Make Command
+
+php artisan make:console \SAAS\App\Console\Commands\{name}
+
+#### Exception Make Command
+
+php artisan make:exception \SAAS\App\Exceptions\{name}
+
+#### Job Make Command
+
+php artisan make:job \SAAS\Domain\{namespace}\Jobs\{name}
+
+#### Event Make Command
+
+php artisan make:event \SAAS\Domain\{namespace}\Events\{name}
+
+#### Listener Make Command
+
+php artisan make:listener \SAAS\Domain\{namespace}\Listeners\{name}
+
+#### Mail Make Command
+
+php artisan make:mail \SAAS\Domain\{namespace}\Mail\{name}
+
+#### Model Make Command
+
+php artisan make:model \SAAS\Domain\{namespace}\Models\{name}
+
+#### Notification Make Command
+
+php artisan make:notification \SAAS\Domain\{namespace}\Notifications\{name}
+
+#### Policy Make Command
+
+php artisan make:policy \SAAS\Http\{namespace}\Policies\{name}
+
+#### Rule Make Command
+
+php artisan make:rule \SAAS\Domain\{namespace}\Rules\{name}
+
+__Note__: Some files can be placed in the `app/App` folder if they are intended to be used globally
+
+```cli
+php artisan make:{command} \SAAS\App\{namespace}\{name}
+```
 
 ### Custom Commands
 
 1. __Admin: *Assign user a role*__
-    - Use `php artisan role:assign <email> <role-slug>`:
+  Use `php artisan role:assign <email> <role-slug>`:
     `<email>` is the user's email and `<role-slug>` is the *slug of the role* you wish to assign the user.
 
 ### Force HTTPS
