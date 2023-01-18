@@ -6,7 +6,6 @@ use SAAS\Domain\Teams\Models\Team;
 use SAAS\Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Laravel\Jetstream\Features;
 use Miracuthbert\LaravelRoles\Models\Role;
 
 class UserFactory extends Factory
@@ -32,7 +31,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'phone' => $this->faker->unique()->phoneNumber,
-            'password' => 'password', /*'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password*/
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
     }
