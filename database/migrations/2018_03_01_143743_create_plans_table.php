@@ -17,7 +17,7 @@ class CreatePlansTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug', 250)->unique();
-            $table->string('gateway_id');
+            $table->string('gateway_id')->unique();
             $table->decimal('price', 6, 2);
             $table->boolean('active')->default(false);
             $table->boolean('teams_enabled')->default(false);
