@@ -12,13 +12,11 @@ require('./bootstrap');
 
 //chartjs
 
-window.Vue = require('vue');
+window.Vue = require('vue').default;
 
 var VueScrollTo = require('vue-scrollto');
 
 Vue.use(VueScrollTo);
-
-// import TagsIndex from './components/tags/Index';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -26,8 +24,7 @@ Vue.use(VueScrollTo);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('data-table', require('./components/DataTable.vue'));
-// Vue.component('tags-index', TagsIndex);
+Vue.component('data-table', require('./components/DataTable.vue').default);
 
 const app = new Vue({
     el: '#app'

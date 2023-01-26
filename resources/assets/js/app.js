@@ -7,16 +7,15 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+window.Vue = require('vue').default;
 
 import VueTimeago from 'vue-timeago';
 
 Vue.use(VueTimeago, {
     name: 'timeago', // component name, `timeago` by default
-    locale: 'en-US',
+    locale: 'en',
     locales: {
-        // you will need json-loader in webpack 1
-        'en-US': require('vue-timeago/locales/en-US.json')
+        'en': require('date-fns/locale/en')
     }
 });
 
@@ -28,17 +27,17 @@ Vue.use(VueTimeago, {
 
 Vue.component(
     'passport-clients',
-    require('./components/passport/Clients.vue')
+    require('./components/passport/Clients.vue').default
 );
 
 Vue.component(
     'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue')
+    require('./components/passport/AuthorizedClients.vue').default
 );
 
 Vue.component(
     'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue')
+    require('./components/passport/PersonalAccessTokens.vue').default
 );
 
 const app = new Vue({
