@@ -4,15 +4,28 @@
     <div class="card">
 
         <div class="card-body">
-            <h4 class="card-title">Update card</h4>
-            <p class="card-subtitle">Your card will be used for future payments.</p>
+            <h4 class="card-title">{{ __('Update card') }}</h4>
+            <p class="card-subtitle mb-2">Your card will be used for future payments.</p>
 
-            <form method="POST" action="{{ route('account.subscription.card.store') }}" id="card-form">
+            <form method="POST" action="{{ route('account.subscription.card.store') }}" id="payment-form">
                 {{ csrf_field() }}
 
+                <div id="card-error mb-2"></div>
+
+                <div class="form-group mb-5">
+                    <label for="card-holder-name" class="control-label">{{ __('Full name') }}</label>
+                    <input type="text" id="card-holder-name" class="form-control mt-1" value="{{ auth()->user()->name }}" />
+                </div>
+
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="update">
-                        Update card
+                    <label for="card-holder-name" class="control-label mb-3">{{ __('Card details') }}</label>
+                    <!-- Stripe Elements Placeholder -->
+                    <div id="card-element"></div>
+                </div>
+
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary" id="card-button" data-secret="{{ optional($intent)->client_secret }}">
+                        {{ __('Update card') }}
                     </button>
                 </div>
             </form>
@@ -21,36 +34,46 @@
 @endsection
 
 @push('scripts')
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script>
-        let handler = StripeCheckout.configure({
-            key: '{{ config('services.stripe.key') }}',
-            locale: 'auto',
-            token: function (token) {
-                let form = $('#card-form')
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe(@js(config('services.stripe.key')));
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element');
 
-                $('#update').prop('disabled', true)
+    const cardHolderName = document.getElementById('card-holder-name');
+    const cardButton = document.getElementById('card-button');
+    const clientSecret = cardButton.dataset.secret;
 
-                $('<input>').attr({
-                    type: 'hidden',
-                    name: 'token',
-                    value: token.id,
-                }).appendTo(form)
-
-                form.submit();
+    cardButton.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const { setupIntent, error } = await stripe.confirmCardSetup(clientSecret, {
+            payment_method: {
+                card: cardElement,
+                billing_details: {
+                    name: cardHolderName.value
+                }
             }
-        })
+        });
 
-        $('#update').click(function (e) {
-            handler.open({
-                name: 'Laravel SaaS',
-                currency: '{{ config('settings.cashier.currency') }}',
-                key: '{{ config('services.stripe.key') }}',
-                email: '{{ auth()->user()->email }}',
-                panelLabel: 'Update card'
-            })
+        if (error) {
+            // Display "error.message" to the user...
+            document.getElementById('card-error').innerText = error.message
+            document.getElementById('card-button').disabled = false
+        } else {
+            let form = document.getElementById('payment-form')
 
-            e.preventDefault();
-        })
-    </script>
+            cardButton.disabled = true
+
+            $input = document.createElement('input')
+            $input.type = 'hidden'
+            $input.name = 'payment_method'
+            $input.value = setupIntent.payment_method
+
+            form.append($input)
+
+            form.submit()
+        }
+    });
+</script>
 @endpush

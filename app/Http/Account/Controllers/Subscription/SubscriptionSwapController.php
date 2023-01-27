@@ -15,12 +15,12 @@ class SubscriptionSwapController extends Controller
     /**
      * Show swap subscription form.
      *
-     * @param Request $request
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $plans = Plan::except($request->user()->plan->id)->active()->get();
+        $plans = Plan::except(optional($request->user()->plan)->id)->active()->get();
 
         return view('account.subscription.swap.index', compact('plans'));
     }
@@ -28,7 +28,7 @@ class SubscriptionSwapController extends Controller
     /**
      * Store new subscription in storage.
      *
-     * @param SubscriptionSwapStoreRequest $request
+     * @param  SubscriptionSwapStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(SubscriptionSwapStoreRequest $request)
@@ -48,10 +48,19 @@ class SubscriptionSwapController extends Controller
             $user->team->users()->detach();
         }
 
-        $user->subscription('main')->swap([$user->plan->gateway_id, $plan->gateway_id]);
+        if (!$user->plan) {
+            return back()->withError(__('Failed swapping plan.'));
+        }
 
-        // send mail to user
-        Mail::to($user)->send(new SubscriptionSwapped());
+        try {
+            $user->subscription('main')->swap($plan->gateway_id);
+    
+            // send mail to user
+            Mail::to($user)->send(new SubscriptionSwapped());
+        } catch(\Exception $e) {
+            logger($e->getMessage(), $e->getTrace());
+            return back()->withError($e->getMessage());
+        }
 
         return back()->withSuccess('Your subscription has been changed.');
     }
@@ -59,13 +68,13 @@ class SubscriptionSwapController extends Controller
     /**
      * Check if user is downgrading from a team plan.
      *
-     * @param User $user
-     * @param Plan $plan
+     * @param  \SAAS\Domain\Users\Models\User $user
+     * @param  \SAAS\Domain\Subscriptions\Models\Plan $plan
      * @return bool
      */
     public function downgradesFromTeamPlan(User $user, Plan $plan)
     {
-        if ($user->plan->isForTeams() && $plan->isNotForTeams()) {
+        if (optional($user->plan)->isForTeams() && $plan->isNotForTeams()) {
             return true;
         }
 

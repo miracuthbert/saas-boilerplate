@@ -17,12 +17,26 @@ class SubscriptionCardController extends Controller
      */
     public function index(Request $request)
     {
-        return view('account.subscription.card.index');
+        $intent = null;
+
+        try {
+            $intent = $request->user()->createSetupIntent();
+        } catch (\Exception $e) {
+            logger($e->getMessage(), $e->getTrace());
+        }
+
+        return view('account.subscription.card.index', compact('intent'));
     }
 
     public function store(Request $request)
     {
-        $request->user()->updateCard($request->token);
+        $this->validate($request, [
+            'payment_method' => ['required']
+        ]);
+
+        $request->user()->updateDefaultPaymentMethod($request->payment_method);
+
+        $request->user()->updateDefaultPaymentMethodFromStripe();
 
         // send email
         Mail::to($request->user())->send(new CardUpdated());

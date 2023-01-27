@@ -6,8 +6,8 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('Swap subscription') }}</h4>
             <p class="card-subtitle mb-2">
-                {{ __('Current plan: :name', ['name' => auth()->user()->plan->name]) }}
-                ({{ config('settings.cashier.currency.symbol') }}{{ auth()->user()->plan->price }})
+                {{ __('Current plan: :name', ['name' => optional(auth()->user()->plan)->name]) }}
+                ({{ config('settings.cashier.currency.symbol') }}{{ optional(auth()->user()->plan)->price }})
             </p>
 
             <form method="POST" action="{{ route('account.subscription.swap.store') }}">

@@ -18,7 +18,11 @@
                 @notpiggybacksubscription
                     <div class="list-group-item">
                         <h4>Plan</h4>
-                        <p>{{  auth()->user()->plan->name }}</p>
+                        @if(auth()->user()->plan)
+                            <p>{{ auth()->user()->plan->name }}</p>
+                        @else
+                            <p>{{ __('Failed getting subscription details.') }}</p>
+                        @endif
                     </div>
                 @endnotpiggybacksubscription
             @endsubscribed
