@@ -5,7 +5,7 @@ namespace SAAS\Http\Subscriptions\Controllers;
 use Illuminate\Http\Request;
 use SAAS\App\Controllers\Controller;
 use SAAS\Domain\Subscriptions\Models\Plan;
-use SAAS\Http\Subscriptionss\Requests\SubscriptionStoreRequest;
+use SAAS\Http\Subscriptions\Requests\SubscriptionStoreRequest;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
